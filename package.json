@@ -1,0 +1,21 @@
+{
+  "name": "mpc-mcp",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@emotion/is-prop-valid": "^1.2.0",
+    "@sveltejs/vite-plugin-svelte": "^1.0.1",
+    "svelte": "^3.49.0",
+    "svelte-motion": "^0.11.2",
+    "vite": "^3.0.0"
+  },
+  "dependencies": {
+    "svelte-scrolling": "^1.2.2"
+  }
+}
