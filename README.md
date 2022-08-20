@@ -1,6 +1,11 @@
 # MPC-MCP
 
 This template should help get you started developing with Svelte in Vite.
+## How to run project
+```shell
+npm install
+npm run dev
+```
 
 ## Recommended IDE Setup
 
