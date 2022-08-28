@@ -128,14 +128,9 @@
     
   }
   .splash-img {
-    /* background: rgba(0, 151, 19, 0.3); */
+    background: rgba(0, 0, 0, 0.3) url("/splash1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0);
-    /* z-index: 2; */
-    opacity: 60%;
-    background-image: url("/splash1.jpg");
-    /* background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('/splash1.jpg'); */
-
+    background-blend-mode: darken;
   }
 </style>
