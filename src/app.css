@@ -80,7 +80,7 @@ button:focus-visible {
 nav {
   background-color: rgba(0, 0, 0, 0.8);
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  height: 45px;
+  height: 60px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -102,7 +102,7 @@ nav {
   width: 100%;
   justify-content: space-between;
   margin: 0;
-  padding: 0 40px;
+  padding: 0 80px;
 }
 .navbar-list li {
   list-style-type: none;
@@ -120,12 +120,13 @@ nav {
 
 .navbar-list a {
   color: #fff;
+  font-family: 'Nunito', sans-serif;
   text-decoration: none;
   display: flex;
-  height: 45px;
+  height: 60px;
   align-items: center;
   padding: 0 10px;
-  font-size: 13px;
+  font-size: 15px;
 }
 @media only screen and (min-width: 767px) {
   .mobile-icon {
