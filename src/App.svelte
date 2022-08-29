@@ -64,7 +64,10 @@
     </div>
   </section>
   <section use:scrollRef={"cards"}>
-    <Game />
+    <div class="section" style="background-color: salmon;">
+      <Game />
+    </div>
+    
   </section>
   <section use:scrollRef={"frame"}>
     <Landing name="frame" />
