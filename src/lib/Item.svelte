@@ -94,7 +94,7 @@
   .flip-card-back {
     background-color: #bbb;
     color: black;
-    background: url('back.jpg');
+    background: url('/back.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 10px;

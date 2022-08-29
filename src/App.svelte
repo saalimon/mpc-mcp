@@ -131,7 +131,7 @@
     
   }
   .splash-img {
-    background: rgba(0, 0, 0, 0.3) url("splash1.jpg");
+    background: rgba(0, 0, 0, 0.3) url("/splash1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: darken;
