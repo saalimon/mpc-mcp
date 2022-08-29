@@ -30,7 +30,7 @@
     <div class="section">
       <div class="splash  splash-img">
         <div class="center-content">
-          <img src="/logo.png" alt="logo" class="logo" />
+          <img src="logo.png" alt="logo" class="logo" />
           <h1 class="title" style="opacity: 100% !important;">MONSTER CARDS PROJECT</h1>
           <a href="https://twitter.com/hashtag/MPC_MCP" class="twitter"
             >#MPC_MCP</a
@@ -51,7 +51,7 @@
       <div class="splash">
         <div class="center-content">
           <h1 class="title" style="color: white;">ANGUR</h1>
-          <img src="/MCP_W.png" alt="logo" class="logo" />
+          <img src="MCP_W.png" alt="logo" class="logo" />
           <p class="content-font" style="font-size: 20px;">
             มาทำนายดวงชะตาของคุณวันนี้กัน
           </p>
@@ -131,7 +131,7 @@
     
   }
   .splash-img {
-    background: rgba(0, 0, 0, 0.3) url("/splash1.jpg");
+    background: rgba(0, 0, 0, 0.3) url("splash1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: darken;
