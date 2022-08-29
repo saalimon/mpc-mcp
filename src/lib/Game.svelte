@@ -2,14 +2,18 @@
   import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
   import AnimateSharedLayout from "svelte-motion/src/components/AnimateSharedLayout/AnimateSharedLayout.svelte";
   import Item from "./Item.svelte";
-  let list = Array(78)
+  let card = 1
+  let flipped = false
+  let list = Array(1)
     .fill()
     .map((_, i) => {
       const r = Math.random(),
         g = Math.random(),
-        b = Math.random();
+        b = Math.random(),
+        card_no = Math.floor(Math.random() * 78),
+        hanged = Math.floor(Math.random() * 2);
       const t = (r + g + b) / 255;
-      return { r: r / t, g: g / t, b: b / t, i };
+      return { r: r / t, g: g / t, b: b / t, i:i, card_no: card_no, hanged: hanged};
     })
     .sort((x, y) => x.r - y.r);
   const sort = (t) => {
@@ -19,6 +23,21 @@
   let by = 1;
   $: sort(by % 3 === 1 ? "r" : by % 3 === 0 ? "b" : "g");
   let gap = 20;
+  function shuffle() {
+    flipped = false
+    by++;
+		list = Array(4)
+    .fill()
+    .map((_, i) => {
+      const r = Math.random(),
+        g = Math.random(),
+        b = Math.random(),
+        card_no = Math.floor(Math.random() * 78),
+        hanged = Math.floor(Math.random() * 2);
+        const t = (r + g + b) / 255;
+      return { r: r / t, g: g / t, b: b / t, i:i, card_no: card_no, hanged: hanged};
+    })
+  }
 </script>
 
 <div class="background">
@@ -26,12 +45,12 @@
     <Motion let:motion={grid} layout>
       <div use:grid class="container" style={"grid-gap:" + gap + "px"}>
         {#each list as item (item.i)}
-          <Item {item} --bg-color="rgb(${item.r},${item.g},${item.b})" />
+          <Item {item} flipped={flipped}/>
         {/each}
       </div>
     </Motion>
   </AnimateSharedLayout>
-  <button on:click={() => by++}>Suffle</button>
+  <button on:click={shuffle}>shuffle</button>
 </div>
 
 <style>
@@ -51,7 +70,7 @@
   }
   .container {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   button {
