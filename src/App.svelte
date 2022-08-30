@@ -77,7 +77,7 @@
   </section>
 </div>
 
-<button on:click={() => scrollTop()}>Go to top</button>
+<button class="corner" on:click={() => scrollTop()}>Go to top</button>
 
 <style>
   .content {
@@ -135,5 +135,14 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: darken;
+  }
+  .corner{
+    position:fixed;
+    right:0;
+    bottom:0;
+    opacity: 40%;
+  }
+  .corner:hover{
+    opacity: 80%;
   }
 </style>

@@ -10,6 +10,13 @@
   //     .split("")
   //     .find((v) => isNaN(parseInt(v))) || "a";
   // $: l = (randomletter(item.r) + randomletter(item.g)).toUpperCase();
+  const hangedtransform = (h) =>{
+    if(item.hanged===1)
+      return "hanged"
+    else
+      return "normal"
+  }
+  $: hanged = hangedtransform(item.hanged)
   flipped = false;
 </script>
 <main class:flipped on:click="{() => flipped = !flipped}">
@@ -19,9 +26,9 @@
         <div use:motion class="flip-card-back" id={item.card_no}>
         </div>
         {#if flipped}
-        <div use:motion class="flip-card-front">
+        <div use:motion class="flip-card-front" style="background: url('/card/{item.card_no}.jpeg'); background-size: contain; background-repeat: no-repeat;">
           <div style="font-size: 1rem; margin-top:100px;">
-            <!-- {item.hanged===1?"hanged":"normal"} -->
+            {hanged}
             <!-- {item.card_no} -->
           </div>
         </div>
@@ -102,6 +109,9 @@
 
   .flip-card-front {
     background-color: #2980b9;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
     transform: rotateY(180deg);
     
   }

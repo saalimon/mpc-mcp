@@ -2,18 +2,25 @@
   import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
   import AnimateSharedLayout from "svelte-motion/src/components/AnimateSharedLayout/AnimateSharedLayout.svelte";
   import Item from "./Item.svelte";
-  let card = 1
-  let flipped = false
-  let list = Array(1)
+  let card = 1;
+  let flipped = false;
+  let list = Array(card)
     .fill()
     .map((_, i) => {
       const r = Math.random(),
         g = Math.random(),
         b = Math.random(),
-        card_no = Math.floor(Math.random() * 78),
+        card_no = Math.floor(Math.random() * 2), // 0 or 1
         hanged = Math.floor(Math.random() * 2);
       const t = (r + g + b) / 255;
-      return { r: r / t, g: g / t, b: b / t, i:i, card_no: card_no, hanged: hanged};
+      return {
+        r: r / t,
+        g: g / t,
+        b: b / t,
+        i: i,
+        card_no: card_no,
+        hanged: hanged,
+      };
     })
     .sort((x, y) => x.r - y.r);
   const sort = (t) => {
@@ -24,28 +31,37 @@
   $: sort(by % 3 === 1 ? "r" : by % 3 === 0 ? "b" : "g");
   let gap = 20;
   function shuffle() {
-    flipped = false
+    flipped = false;
     by++;
-		list = Array(4)
-    .fill()
-    .map((_, i) => {
-      const r = Math.random(),
-        g = Math.random(),
-        b = Math.random(),
-        card_no = Math.floor(Math.random() * 78),
-        hanged = Math.floor(Math.random() * 2);
+    card = 4
+    console.log(card)
+    list = Array(card)
+      .fill()
+      .map((_, i) => {
+        const r = Math.random(),
+          g = Math.random(),
+          b = Math.random(),
+          card_no = Math.floor(Math.random() * 2),
+          hanged = Math.floor(Math.random() * 2);
         const t = (r + g + b) / 255;
-      return { r: r / t, g: g / t, b: b / t, i:i, card_no: card_no, hanged: hanged};
-    })
+        return {
+          r: r / t,
+          g: g / t,
+          b: b / t,
+          i: i,
+          card_no: card_no,
+          hanged: hanged,
+        };
+      });
   }
 </script>
 
 <div class="background">
   <AnimateSharedLayout type="crossfade">
     <Motion let:motion={grid} layout>
-      <div use:grid class="container" style={"grid-gap:" + gap + "px"}>
+      <div use:grid class="container" style="grid-gap: {gap}px; grid-template-columns: repeat({card}, 1fr);">
         {#each list as item (item.i)}
-          <Item {item} flipped={flipped}/>
+          <Item {item} {flipped} />
         {/each}
       </div>
     </Motion>
@@ -70,7 +86,9 @@
   }
   .container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-items: center; /* adjusted */
+    /* grid-template-columns: repeat(card, 1fr); */
   }
 
   button {
