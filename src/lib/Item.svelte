@@ -26,7 +26,7 @@
         <div use:motion class="flip-card-back" id={item.card_no}>
         </div>
         {#if flipped}
-        <div use:motion class="flip-card-front" style="background: url('/card/{item.card_no}.jpeg'); background-size: contain; background-repeat: no-repeat;">
+        <div use:motion class="flip-card-front" style="background: url('/card/{item.card_no}.png'); background-size: contain; background-repeat: no-repeat;">
           <div style="font-size: 1rem; margin-top:100px;">
             {hanged}
             <!-- {item.card_no} -->
