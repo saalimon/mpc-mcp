@@ -1,6 +1,7 @@
 <script>
   import { scrollTo, scrollRef, scrollTop } from "svelte-scrolling";
   import Game from "./lib/Game.svelte";
+  import Test from "./lib/test.svelte"
   import Landing from "./lib/Landing.svelte";
 
   const navItems = [
@@ -66,6 +67,7 @@
   <section use:scrollRef={"cards"}>
     <div class="section" style="background-color: salmon;">
       <Game />
+      <Test />
     </div>
     
   </section>

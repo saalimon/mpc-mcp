@@ -16,6 +16,8 @@
     "vite": "^3.0.0"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
+    "node-sass": "^7.0.1",
     "svelte-scrolling": "^1.2.2"
   }
 }
