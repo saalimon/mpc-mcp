@@ -1,5 +1,5 @@
 <script>
-  import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
+  // import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
   export let item;
   export let flipped;
 
@@ -12,31 +12,31 @@
   // $: l = (randomletter(item.r) + randomletter(item.g)).toUpperCase();
   const hangedtransform = (h) =>{
     if(item.hanged===1)
-      return "hanged"
+      return "transform: rotateX(180deg);"
     else
-      return "normal"
+      return "transform: rotateY(180deg);"
   }
   $: hanged = hangedtransform(item.hanged)
   flipped = false;
 </script>
+
 <main class:flipped on:click="{() => flipped = !flipped}">
-  <Motion let:motion layoutId={item.id} layout>
+  <!-- <Motion let:motion layoutId={item.id} layout> -->
     <div class="flip-card">
       <div class="flip-card-inner">
-        <div use:motion class="flip-card-back" id={item.card_no}>
+        <div class="flip-card-back">
         </div>
-        {#if flipped}
-        <div use:motion class="flip-card-front" style="background: url('/card/{item.card_no}.png'); background-size: contain; background-repeat: no-repeat;">
-          <div style="font-size: 1rem; margin-top:100px;">
-            {hanged}
-            <!-- {item.card_no} -->
-          </div>
+        <!-- {#if flipped} -->
+        <div class="flip-card-front" style="background: url('/card/{item.card_no}.png'); 
+                                            background-size: contain;
+                                            background-repeat: no-repeat;
+                                            {hangedtransform(item.hanged)};">
         </div>
-        {/if}
+        <!-- {/if} -->
         
       </div>
     </div>
-  </Motion>
+  <!-- </Motion> -->
 </main>
 <style>
   /* .item {
@@ -108,11 +108,12 @@
   }
 
   .flip-card-front {
-    background-color: #2980b9;
+    background-color: #bbb;
     color: black;
-    font-weight: bold;
+    background: url('/card/1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
     border-radius: 10px;
-    transform: rotateY(180deg);
     
   }
 </style>
