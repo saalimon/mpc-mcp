@@ -2,14 +2,7 @@
   // import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
   export let item;
   export let flipped;
-
-  // const randomletter = (l) =>
-  //   l
-  //     .toString(36)
-  //     .substring(7)
-  //     .split("")
-  //     .find((v) => isNaN(parseInt(v))) || "a";
-  // $: l = (randomletter(item.r) + randomletter(item.g)).toUpperCase();
+  export let cardList = []
   const hangedtransform = (h) =>{
     if(item.hanged===1)
       return "transform: rotateX(180deg);"
@@ -18,38 +11,27 @@
   }
   $: hanged = hangedtransform(item.hanged)
   flipped = false;
+  function getCard(){
+    flipped = !flipped
+    cardList = [...cardList, String(item.card_no) ]
+  }
 </script>
 
-<main class:flipped on:click="{() => flipped = !flipped}">
-  <!-- <Motion let:motion layoutId={item.id} layout> -->
+<main class:flipped on:click="{getCard}">
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-back">
         </div>
-        <!-- {#if flipped} -->
         <div class="flip-card-front" style="background: url('/card/{item.card_no}.png'); 
                                             background-size: contain;
                                             background-repeat: no-repeat;
                                             {hangedtransform(item.hanged)};">
         </div>
-        <!-- {/if} -->
         
       </div>
     </div>
-  <!-- </Motion> -->
 </main>
 <style>
-  /* .item {
-    width: 200px;
-    height: 300px;
-    color: white;
-    font-size: large;
-    background-color: transparent;
-    perspective: 1000px;
-    cursor: pointer;
-    user-select: none;
-    
-  } */
   .flip-card {
     background-color: transparent;
     width: 180px;
@@ -68,23 +50,6 @@
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
-  /* 
-  .item-back{
-    background-color: white;
-    background: url('/back.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-radius: 10px;
-    
-  }
-  .item-front{
-    background-color: white;
-    background: url('/tarot-back.jpeg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-radius: 10px;
-    
-  } */
   .flipped .flip-card .flip-card-inner {
     transform: rotateY(180deg);
   }

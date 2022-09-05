@@ -5,11 +5,14 @@
   // import AnimateSharedLayout from "svelte-motion/src/components/AnimateSharedLayout/AnimateSharedLayout.svelte";
   import Item from "./Item.svelte";
   import { flip } from "svelte/animate";
+  import Landing from "./Landing.svelte";
 
+  export let cardList = []
   let card = 1; // initial card for each turn
   let flipped = false;
   let cardNo = 89; // number of tarot card
   let rerender = true;
+  
   
   function arrCard(num){
     const nums = new Set();
@@ -52,6 +55,7 @@
     card = 4
     list = arrCard(cardNo);
     rerender = !rerender
+    cardList = []
   }
 </script>
 
@@ -63,7 +67,7 @@
           {#each list as item (item.i)}
             <div animate:flip={{ duration: 500 }}>
               {#key rerender}
-                <Item  {item} {flipped} />
+                <Item bind:cardList {item} {flipped} />
               {/key}
             </div>
 
