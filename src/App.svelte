@@ -1,5 +1,6 @@
 <script>
   import { scrollTo, scrollRef, scrollTop } from "svelte-scrolling";
+  
   import Game from "./lib/Game.svelte";
   import Landing from "./lib/Landing.svelte";
   import Prophecy from "./lib/Prophecy.svelte";
@@ -40,6 +41,7 @@
     }
   }
   $: cardList, prophecy();
+  
 </script>
 
 <nav>
@@ -96,7 +98,7 @@
     </div>
   </section>
   <section use:scrollRef={"cards"}>
-    <div class="section" style="background-color: salmon;">
+    <div class="section" style="background-color: rgba(0, 0, 0, 0.2);">
       <Game bind:cardList />
     </div>
   </section>

@@ -18,6 +18,10 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "node-sass": "^7.0.1",
-    "svelte-scrolling": "^1.2.2"
+    "svelte-particles": "^2.2.4",
+    "svelte-preprocess": "^4.10.7",
+    "svelte-scrolling": "^1.2.2",
+    "tsparticles": "^2.2.4",
+    "typescript": "^4.8.2"
   }
 }

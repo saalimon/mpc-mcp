@@ -18,14 +18,14 @@
     main {
       text-align: center;
       padding: 1em;
-      max-width: 240px;
+      /* max-width: 240px; */
       margin: 0 auto;
       
     }
     .panel{
         background-color: whitesmoke;
         height: 90vh;
-        width: 90%;
+        width: 100vw;
         border-radius: 10px;
         margin: 0 auto;
         display: flex;
