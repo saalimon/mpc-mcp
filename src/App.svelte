@@ -31,7 +31,7 @@
   const navItems = [
     { label: "HOME", href: "home" },
     { label: "GUIDE", href: "guide" },
-    { label: "CARDS", href: "cards" },
+    { label: "AUGUR", href: "augur" },
     { label: "FRAME", href: "frame" },
     { label: "TALK", href: "talk" },
   ];
@@ -74,8 +74,8 @@
           >
         </div>
         <h4 class="footer">
-          *นี่เป็นกิจกรรมที่จัดขึ้นภายในคอมมูมอนสเตอร์พรอมเท่านั้น(MPC)
-          ผู้เข้าชมที่มาจากภายนอก ขอความร่วมมือ ไม่ฟลอโล่ว ไม่รีทวิต ไม่โควททวิต
+          *นี่เป็นกิจกรรมที่จัดขึ้นภายในคอมมูมอนสเตอร์พรอมเท่านั้น(MPC)*<br>
+          *ผู้เข้าชมที่มาจากภายนอก ขอความร่วมมือ ไม่ฟลอโล่ว ไม่รีทวิต ไม่โควททวิต
           หรือไม่กดเฟปทวิตของผู้เล่นในคอมมูนี้อย่างเด็ดขาด
           ขอบคุณที่ให้ความร่วมมือ*
         </h4>
@@ -87,10 +87,11 @@
     <div class="section" style="background-color: #808080;">
       <div class="splash splash-img-guide">
         <div class="center-content">
-          <h1 class="title" style="color: white;">GUIDE</h1>
+          <h1 class="title" style="color: white;">GUIDE TO AUGUR</h1>
           <img src="MCP_W.png" alt="logo" class="logo" />
           <p class="content-font" style="font-size: 20px;">
-            ทำนายดวงชะตาของคุณในวันนี้ โดย
+            ทำนายดวงชะตาของคุณในวันนี้ โดยเมื่อทำการเลือกไพ่ออกมาสี่ใบ <br>
+            โดยที่จะเรียงคำทำนายในด้าน การงาน สุขภาพ ความรัก และโชคลาภ ตามลำดับ
           </p>
           <p class="content-font" style="font-size: 12px;">
             *นี่เป็นกิจกรรมที่จัดเพื่อความบันเทิงเท่านั้น
@@ -100,21 +101,23 @@
       </div>
     </div>
   </section>
-  <section use:scrollRef={"cards"}>
-    
-    <div class="section" >
+  <section use:scrollRef={"augur"}>
+    <div class="section" style="background-color: rgba(0, 0, 0, 0.4);">
       <Game bind:cardList />
     </div>
   </section>
-  <section use:scrollRef={"test"}>
+  <section use:scrollRef={"prophecy"}>
     {#if cardList.length == 4}
       <p>{cardList[0]}</p>
       <Prophecy prophecy={cards[0]} />
     {/if}
   </section>
 
-  <section use:scrollRef={"frame"}>
+  <section use:scrollRef={"test"}>
     <Prophecy prophecy={test} />
+  </section>
+  <section use:scrollRef={"frame"}>
+    <Landing name="frame" />
   </section>
   <section use:scrollRef={"talk"}>
     <Landing name="talk" />

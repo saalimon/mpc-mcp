@@ -188,7 +188,7 @@ nav {
 .footer {
   margin-top: auto;
   font-family: "Nunito", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   color: white;
 }
 .center-content {
@@ -196,7 +196,7 @@ nav {
   
 }
 .splash-img-home {
-  background: rgba(0, 0, 0, 0.3) url("/splash1.jpg");
+  background: rgba(29, 27, 27, 0.7) url("/splash1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: darken;
