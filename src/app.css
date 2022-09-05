@@ -195,12 +195,20 @@ nav {
   margin: auto auto;
   
 }
-.splash-img {
+.splash-img-home {
   background: rgba(0, 0, 0, 0.3) url("/splash1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: darken;
 }
+
+.splash-img-guide {
+  background: rgba(0, 0, 0, 0.5) url("/splash2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: darken;
+}
+
 .corner{
   position:fixed;
   right:0;
