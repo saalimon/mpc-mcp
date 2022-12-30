@@ -6,6 +6,7 @@
   import data from "./data.json";
   let cardList = [];
   let cards = [];
+  let flipped = [];
   let test = {
     cardId: "0",
     cardName: "THE INVASION",
@@ -74,10 +75,9 @@
           >
         </div>
         <h4 class="footer">
-          *นี่เป็นกิจกรรมที่จัดขึ้นภายในคอมมูมอนสเตอร์พรอมเท่านั้น(MPC)*<br>
+          *นี่เป็นกิจกรรมที่จัดขึ้นภายในคอมมูมอนสเตอร์พรอมเท่านั้น(MPC)*<br />
           *ผู้เข้าชมที่มาจากภายนอก ขอความร่วมมือ ไม่ฟลอโล่ว ไม่รีทวิต ไม่โควททวิต
-          หรือไม่กดเฟปทวิตของผู้เล่นในคอมมูนี้อย่างเด็ดขาด
-          ขอบคุณที่ให้ความร่วมมือ*
+          หรือไม่กดเฟปทวิตของผู้เล่นในคอมมูนี้อย่างเด็ดขาด ขอบคุณที่ให้ความร่วมมือ*
         </h4>
       </div>
     </div>
@@ -90,7 +90,7 @@
           <h1 class="title" style="color: white;">GUIDE TO AUGUR</h1>
           <img src="MCP_W.png" alt="logo" class="logo" />
           <p class="content-font" style="font-size: 20px;">
-            ทำนายดวงชะตาของคุณในวันนี้ โดยเมื่อทำการเลือกไพ่ออกมาสี่ใบ <br>
+            ทำนายดวงชะตาของคุณในวันนี้ โดยเมื่อทำการเลือกไพ่ออกมาสี่ใบ <br />
             โดยที่จะเรียงคำทำนายในด้าน การงาน สุขภาพ ความรัก และโชคลาภ ตามลำดับ
           </p>
           <p class="content-font" style="font-size: 12px;">
@@ -109,16 +109,16 @@
   <section use:scrollRef={"prophecy"}>
     {#if cardList.length == 4}
       <p>{cardList[0]}</p>
-      <Prophecy prophecy={cards[0]} />
+      <Prophecy prophecy={cards[0]}  postion={0}/>
+      <Prophecy prophecy={cards[1]} postion={1}/>
+      <Prophecy prophecy={cards[2]} postion={2}/>
+      <Prophecy prophecy={cards[3]} postion={3}/>
     {/if}
   </section>
 
-  <section use:scrollRef={"test"}>
+  <!-- <section use:scrollRef={"test"}>
     <Prophecy prophecy={test} />
-  </section>
-  <section use:scrollRef={"frame"}>
-    <Landing name="frame" />
-  </section>
+  </section> -->
   <section use:scrollRef={"talk"}>
     <Landing name="talk" />
   </section>
