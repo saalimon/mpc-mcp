@@ -54,11 +54,22 @@
     rerender = !rerender;
     cardList = [];
   }
+
+  function reset() {
+    flipped = false;
+    by++;
+    card = 1;
+    list = arrCard(cardNo);
+    rerender = !rerender;
+    cardList = [];
+  }
 </script>
 
 <div class="background">
   <!-- <AnimateSharedLayout type="crossfade"> -->
   <!-- <Motion let:motion={grid} layout> -->
+
+  <h1 class="title" style="opacity: 100% !important;">See Your Prophecy</h1>
   <div
     class="container"
     style="grid-gap: {gap}px; grid-template-columns: repeat({card}, 1fr);"
@@ -76,7 +87,7 @@
 
   <!-- </Motion> -->
   <!-- </AnimateSharedLayout> -->
-  <button class="raise" on:click={shuffle}>Reveal your cards</button>
+  <button class="raise" on:click={ cardList.length ==4 ? reset : shuffle} >{ cardList.length ==4 ? "Reveal Again" : "Reveal your cards"}</button>
 </div>
 
 <style>

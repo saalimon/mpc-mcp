@@ -20,7 +20,7 @@
       <div class="flip-card-back" />
       <div
         class="flip-card-front"
-        style="background: url('/card/{item.card_no}.png'); 
+        style="background: url('/mpc-mcp/card/{item.card_no}.png'); 
                                           background-size: contain;
                                           background-repeat: no-repeat;
                                           {hangedtransform(item.hanged)};"
