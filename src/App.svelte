@@ -6,12 +6,11 @@
   import data from "./data.json";
   let cardList = [];
   let cards = [];
-
   const navItems = [
     { label: "HOME", href: "home" },
-    { label: "AUGUR", href: "angur" },
-    { label: "CARDS", href: "cards" },
-    { label: "FRAME", href: "frame" },
+    { label: "GUIDE", href: "guide" },
+    { label: "AUGUR", href: "augur" },
+    // { label: "FRAME", href: "frame" },
     { label: "TALK", href: "talk" },
   ];
   function prophecy() {
@@ -42,7 +41,7 @@
 <div class="content">
   <section use:scrollRef={"home"}>
     <div class="section">
-      <div class="splash  splash-img">
+      <div class="splash  splash-img-home">
         <div class="center-content">
           <img src="logo.png" alt="logo" class="logo" />
           <h1 class="title" style="opacity: 100% !important;">
@@ -53,23 +52,23 @@
           >
         </div>
         <h4 class="footer">
-          *นี่เป็นกิจกรรมที่จัดขึ้นภายในคอมมูมอนสเตอร์พรอมเท่านั้น(MPC)
-          ผู้เข้าชมที่มาจากภายนอก ขอความร่วมมือ ไม่ฟลอโล่ว ไม่รีทวิต ไม่โควททวิต
-          หรือไม่กดเฟปทวิตของผู้เล่นในคอมมูนี้อย่างเด็ดขาด
-          ขอบคุณที่ให้ความร่วมมือ*
+          *นี่เป็นกิจกรรมที่จัดขึ้นภายในคอมมูมอนสเตอร์พรอมเท่านั้น(MPC)*<br />
+          *ผู้เข้าชมที่มาจากภายนอก ขอความร่วมมือ ไม่ฟลอโล่ว ไม่รีทวิต ไม่โควททวิต
+          หรือไม่กดเฟปทวิตของผู้เล่นในคอมมูนี้อย่างเด็ดขาด ขอบคุณที่ให้ความร่วมมือ*
         </h4>
       </div>
     </div>
   </section>
 
-  <section use:scrollRef={"angur"}>
+  <section use:scrollRef={"guide"}>
     <div class="section" style="background-color: #808080;">
-      <div class="splash">
+      <div class="splash splash-img-guide">
         <div class="center-content">
-          <h1 class="title" style="color: white;">ANGUR</h1>
+          <h1 class="title" style="color: white;">GUIDE TO AUGUR</h1>
           <img src="MCP_W.png" alt="logo" class="logo" />
           <p class="content-font" style="font-size: 20px;">
-            มาทำนายดวงชะตาของคุณวันนี้กัน
+            ทำนายดวงชะตาของคุณในวันนี้ โดยเมื่อทำการเลือกไพ่ออกมาสี่ใบ <br />
+            โดยที่จะเรียงคำทำนายในด้าน การงาน สุขภาพ ความรัก และโชคลาภ ตามลำดับ
           </p>
           <p class="content-font" style="font-size: 12px;">
             *นี่เป็นกิจกรรมที่จัดเพื่อความบันเทิงเท่านั้น
@@ -94,6 +93,10 @@
       </div>
     {/if}
   </section>
+
+  <!-- <section use:scrollRef={"test"}>
+    <Prophecy prophecy={test} />
+  </section> -->
   <section use:scrollRef={"talk"}>
     <Landing name="talk" />
   </section>
