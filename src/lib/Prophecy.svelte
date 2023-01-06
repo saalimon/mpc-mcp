@@ -1,58 +1,53 @@
 <script>
-  import LayoutGrid, { Cell } from "@smui/layout-grid";
   export let prophecy;
-  export let postion; // told user about [ working | health | money | love]
+  export let hanged;
 </script>
 
 <main>
   <div class="panel">
-    <div class="prophecy">
-      <LayoutGrid>
-        <Cell>
-          <div class="cell">
-            <Cell span={6}>
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div
-                    class="flip-card-front"
-                    style="background: url('/card/{prophecy['cardId']}.png'); 
-                                                    background-size: contain;
-                                                    background-repeat: no-repeat;
-                                                   "
-                  />
-                </div>
-              </div>
-            </Cell>
-            <Cell span={4}>
-              <div class="cell">
-                <div class="desc">
-                   <!-- show all the prophcey but will do as one prophecy -->
-                  <h2>คุณได้รับไพ่ {prophecy["cardName"]}</h2>
-                  <p>ด้านการงาน : {prophecy.prophecy["working"]}</p>
-                  <p>ด้านการสุขภาพ : {prophecy.prophecy["health"]}</p>
-                  <p>ด้านการความรัก : {prophecy.prophecy["love"]}</p>
-                  <p>ด้านการโชคลาภ : {prophecy.prophecy["money"]}</p>
-                  
-                  <!-- show remark if the card is hanged and don't have the specifiy phophecy -->
-                  {#if prophecy.cardId == '77' && prophecy["isHaveProphecyHanged"] == false }
-                  <p class="remark">หากไพ่นี้กลับด้าน การงาน การสุขภาพและความรักของคุณจะตรงกันข้ามและถูกผู้ที่มีอำนาจในด้านนั้นๆควบคุมอยู่ ส่วนสำหรับการเงินและโชคลาภจะดีอย่างราวกับตกไปในขุมทรัพย์แห่งชีวิต</p>
-                  {:else if prophecy["isHaveProphecyHanged"] == false } 
-                  <p class="remark">ถ้าคุณได้รับไพ่ใบนี้แบบกลับหัว ดังนั้นคำทำนายจะให้ผลตรงกันข้าม</p>
-    
-                  {:else}
-                  <h2>แต่ถ้าได้รับคำทำนายแบบกลับหัว</h2>
-                  <p>ด้านการงาน : {prophecy.hangedProphecy["working"]}</p>
-                  <p>ด้านการสุขภาพ : {prophecy.hangedProphecy["health"]}</p>
-                  <p>ด้านการความรัก : {prophecy.hangedProphecy["love"]}</p>
-                  <p>ด้านการโชคลาภ : {prophecy.hangedProphecy["money"]}</p>
-                  {/if}
-
-                </div>
-              </div>
-            </Cell>
+    <div style="color: black">
+      <div>
+        <div class="flip-card" style="margin: 0 auto; width: 200px;">
+          <div class="flip-card-inner">
+            <div class="flip-card-back" />
+            <div
+              class="flip-card-front"
+              style="background: url('/mpc-mcp/card/{prophecy.cardId}.png'); 
+                                                background-size: contain;
+                                                background-repeat: no-repeat;
+                                               "
+            />
           </div>
-        </Cell>
-      </LayoutGrid>
+        </div>
+        <h2>{prophecy["cardName"]}</h2>
+        {#if hanged && prophecy["isHaveProphecyHanged"]}
+          <p>
+            <strong>การงาน</strong> - {prophecy["hangedProphecy"]["working"]}
+          </p>
+          <p>
+            <strong>สุขภาพ</strong> - {prophecy["hangedProphecy"]["health"]}
+          </p>
+          <p><strong>ความรัก</strong> - {prophecy["hangedProphecy"]["love"]}</p>
+          <p>
+            <strong>การเเงิน</strong> - {prophecy["hangedProphecy"]["money"]}
+          </p>
+        {:else if hanged && prophecy.isHaveProphecyHanged == false}
+          <p class="remark">
+            <strong
+              >แต่คุณได้รับไพ่ใบนี้แบบกลับหัว ดังนั้นความหมายของคำทำนายจะตรงข้าม</strong
+            >
+          </p>
+          <p><strong>การงาน</strong> - {prophecy["prophecy"]["working"]}</p>
+          <p><strong>สุขภาพ</strong> - {prophecy["prophecy"]["health"]}</p>
+          <p><strong>ความรัก</strong> - {prophecy["prophecy"]["love"]}</p>
+          <p><strong>การเเงิน</strong> - {prophecy["prophecy"]["money"]}</p>
+        {:else}
+          <p><strong>การงาน</strong> - {prophecy["prophecy"]["working"]}</p>
+          <p><strong>สุขภาพ</strong> - {prophecy["prophecy"]["health"]}</p>
+          <p><strong>ความรัก</strong> - {prophecy["prophecy"]["love"]}</p>
+          <p><strong>การเเงิน</strong> - {prophecy["prophecy"]["money"]}</p>
+        {/if}
+      </div>
     </div>
   </div>
 </main>
@@ -61,52 +56,27 @@
   main {
     text-align: center;
     padding: 1em;
-    max-width: 240px;
+    /* max-width: 240px; */
     margin: 0 auto;
+    height: auto;
   }
   .panel {
     background-color: whitesmoke;
-    height: 90vh;
-    width: 90%;
+    padding: 4%;
+    width: 20vw;
     border-radius: 10px;
     margin: 0 auto;
     display: flex;
   }
 
-  .prophecy {
-    color: black;
-    width: 100%;
-    margin: 40px;
-  }
-
-  .cell {
-    display: flex;
-    justify-content: center;
-    align-items: top;
-  }
-
-  .desc {
-    margin: 24px 40px;
-    text-align: left;
-    color: black;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
   .remark {
-color: red;
+    color: #ff3e00;
   }
 
   .flip-card {
-    margin: 24px 40px;
     background-color: transparent;
-    width: 360px;
-    height: 600px;
+    width: 180px;
+    height: 300px;
     perspective: 1000px;
     cursor: pointer;
     user-select: none;
@@ -120,15 +90,35 @@ color: red;
     transition: transform 0.6s;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+  }
+  .flipped .flip-card .flip-card-inner {
+    transform: rotateY(180deg);
   }
 
-  .flip-card-front {
+  .flip-card-front,
+  .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+  }
+
+  .flip-card-back {
+    background-color: #bbb;
+    color: black;
+    background: url("/back.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+  }
+
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+    background: url("/card/1.png");
+    background-size: contain;
+    background-repeat: no-repeat;
     border-radius: 10px;
   }
 

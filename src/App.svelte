@@ -6,29 +6,6 @@
   import data from "./data.json";
   let cardList = [];
   let cards = [];
-  let flipped = [];
-  let test = {
-    cardId: "0",
-    cardName: "THE INVASION",
-    isHaveProphecyHanged: true,
-    prophecy: {
-      working:
-        "จะเกิดปัญหาที่ผ่านพ้นไปได้ค่อนข้างลำบาก เพราะจะมีคู่แข่งมาขัดขวางการทำงาน และคุณได้เจอกับการเปลี่ยนแปลงครั้งใหญ่ในหน้าที่การงาน",
-      health:
-        "โปรดระวังตัวไว้ เพราะจะคุณจะเป็นโรคภัยไข้เจ็บ หากมีโรคประจําตัวอยู่แล้วก็อาจจะมีโรคอื่นๆเพิ่มมาอีก",
-      love: "จะมีบุคคลที่เข้ามาหาคุณ หากคุณยังไม่มีคู่ คนๆนั้นจะมาเป็นคู่ของคุณ และเขาจะเป็นตัวแปรสำคัญ ในการเปลี่ยนชีวิตการเป็นอยู่ของคุณ หากคุณมีคู่แล้ว ไพ่ใบนี้จะหมายถึงจะมีบุคคลที่สาม เข้ามาสร้างอุปสรรค เป็นแบบทดสอบ ให้ความสัมพันธ์ของคุณ",
-      money:
-        "เกิดการเปลี่ยนผันทางการเงินของคุณ ในทางที่ดี แต่ก็ต้องแลกกับบางสิ่งที่จะไม่เหมือนเดิมต่อไป",
-    },
-    hangedProphecy: {
-      working:
-        "จะเป็นไปได้ราบรื่นเพราะจะมีคนคนหนึ่งมาเปลี่ยนแปลงการทำงานของคุณ",
-      health: "วางใจได้ สุขภาพของคุณเป็นปกติดี ไม่มีอาการแทรกซ้อน",
-      love: "ยังต้องรอต่อไป แต่เขาคนนั้นมาแน่หากคุณมีคู่แล้ว ผู้มาเยือนในความหมายไพ่ใบนี้จะหมายถึง ญาติผู้ใหญ่คนใกล้ตัวมามีส่วนร่วมช่วยผลักดันความรักของคุณ",
-      money:
-        "เกิดการเปลี่ยนผันทางการเงินของคุณ ในทางที่ไม่ดีนัก แต่คุณจะได้ของสำคัญในชีวิตกลับมา",
-    },
-  };
   const navItems = [
     { label: "HOME", href: "home" },
     { label: "GUIDE", href: "guide" },
@@ -40,7 +17,7 @@
     if (cardList.length === 4) {
       cards = cardList.map((e) => {
         return data["card"].find((el) => {
-          return el.cardId === e;
+          return parseInt(el.cardId) === parseInt(e.card_no);
         });
       });
     }
@@ -84,11 +61,15 @@
   </section>
 
   <section use:scrollRef={"guide"}>
-    <div class="section" style="background-color: #808080;">
+    <div class="section">
       <div class="splash splash-img-guide">
         <div class="center-content">
           <h1 class="title" style="color: white;">GUIDE TO AUGUR</h1>
-          <img src="MCP_W.png" alt="logo" class="logo" />
+          <a
+            href="https://reidberlin.wixsite.com/mpc-mcp?fbclid=IwAR18AhyRZf5JcuxpwgrWSIkO4Vzu733yVyJwMXVYEvv7ur4plY_i88rUtjY"
+          >
+            <img src="MCP_W.png" alt="logo" class="logo" />
+          </a>
           <p class="content-font" style="font-size: 20px;">
             ทำนายดวงชะตาของคุณในวันนี้ โดยเมื่อทำการเลือกไพ่ออกมาสี่ใบ <br />
             โดยที่จะเรียงคำทำนายในด้าน การงาน สุขภาพ ความรัก และโชคลาภ ตามลำดับ
@@ -102,17 +83,27 @@
     </div>
   </section>
   <section use:scrollRef={"augur"}>
-    <div class="section" style="background-color: rgba(0, 0, 0, 0.4);">
-      <Game bind:cardList />
+    <div class="section" style="background-color: salmon;">
+      <div class="splash splash-img">
+        <Game bind:cardList />
+      </div>
     </div>
   </section>
-  <section use:scrollRef={"prophecy"}>
+  <section use:scrollRef={"test"}>
     {#if cardList.length == 4}
-      <!-- <p>{cardList[0]}</p> -->
-      <Prophecy prophecy={cards[0]}  postion={0}/>
-      <Prophecy prophecy={cards[1]} postion={1}/>
-      <Prophecy prophecy={cards[2]} postion={2}/>
-      <Prophecy prophecy={cards[3]} postion={3}/>
+      <div class="section-100 ">
+        <div class="splash summary-section">
+          <h2 class="title" style="opacity: 100% !important;">
+            The Prophcey Result
+          </h2>
+          <div class="flex-container">
+            <Prophecy prophecy={cards[0]} hanged={cardList[0].hanged} />
+            <Prophecy prophecy={cards[1]} hanged={cardList[1].hanged} />
+            <Prophecy prophecy={cards[2]} hanged={cardList[2].hanged} />
+            <Prophecy prophecy={cards[3]} hanged={cardList[3].hanged} />
+          </div>
+        </div>
+      </div>
     {/if}
   </section>
 
@@ -127,4 +118,89 @@
 <button class="corner" on:click={() => scrollTop()}>Go to top</button>
 
 <style>
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .content {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+  }
+  .section {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+  .section-100 {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .summary-section {
+    height: auto;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+
+    background: rgba(0, 0, 0, 0.8) url("/splash3.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+  }
+  .splash {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    flex-direction: column;
+  }
+  .logo {
+    width: 167px;
+    height: 167px;
+    object-fit: cover;
+  }
+  .title {
+    font-family: droid-serif, serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 68px;
+  }
+  .content-font {
+    font-family: "Nunito", sans-serif;
+    font-size: 19px;
+    color: inherit;
+  }
+  .twitter {
+    font-family: "Nunito", sans-serif;
+    font-size: 19px;
+    color: inherit;
+  }
+  .footer {
+    margin-top: auto;
+    font-family: "Nunito", sans-serif;
+    font-size: 12px;
+  }
+  .center-content {
+    margin: auto auto;
+  }
+  .splash-img {
+    background: rgba(0, 0, 0, 0.7) url("/splash5.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+  }
+  .corner {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    opacity: 40%;
+  }
+  .corner:hover {
+    opacity: 80%;
+  }
 </style>

@@ -1,5 +1,4 @@
 <script>
-  // import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
   export let item;
   export let flipped;
   export let cardList = [];
@@ -11,7 +10,7 @@
   flipped = false;
   function getCard() {
     flipped = !flipped;
-    cardList = [...cardList, String(item.card_no)];
+    cardList = [...cardList, item];
   }
 </script>
 
@@ -21,10 +20,10 @@
       <div class="flip-card-back" />
       <div
         class="flip-card-front"
-        style="background: url('/card/{item.card_no}.png'); 
-                                            background-size: contain;
-                                            background-repeat: no-repeat;
-                                            {hangedtransform(item.hanged)};"
+        style="background: url('/mpc-mcp/card/{item.card_no}.png'); 
+                                          background-size: contain;
+                                          background-repeat: no-repeat;
+                                          {hangedtransform(item.hanged)};"
       />
     </div>
   </div>
