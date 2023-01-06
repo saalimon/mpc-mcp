@@ -1,55 +1,35 @@
 <script>
-  // import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
   export let item;
   export let flipped;
-
-  // const randomletter = (l) =>
-  //   l
-  //     .toString(36)
-  //     .substring(7)
-  //     .split("")
-  //     .find((v) => isNaN(parseInt(v))) || "a";
-  // $: l = (randomletter(item.r) + randomletter(item.g)).toUpperCase();
-  const hangedtransform = (h) =>{
-    if(item.hanged===1)
-      return "transform: rotateX(180deg);"
-    else
-      return "transform: rotateY(180deg);"
-  }
-  $: hanged = hangedtransform(item.hanged)
+  export let cardList = [];
+  const hangedtransform = (h) => {
+    if (item.hanged === 1) return "transform: rotateX(180deg);";
+    else return "transform: rotateY(180deg);";
+  };
+  $: hanged = hangedtransform(item.hanged);
   flipped = false;
+  function getCard() {
+    flipped = !flipped;
+    cardList = [...cardList, item];
+  }
 </script>
 
-<main class:flipped on:click="{() => flipped = !flipped}">
-  <!-- <Motion let:motion layoutId={item.id} layout> -->
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-back">
-        </div>
-        <!-- {#if flipped} -->
-        <div class="flip-card-front" style="background: url('/card/{item.card_no}.png'); 
-                                            background-size: contain;
-                                            background-repeat: no-repeat;
-                                            {hangedtransform(item.hanged)};">
-        </div>
-        <!-- {/if} -->
-        
-      </div>
+<main class:flipped on:click={getCard}>
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-back" />
+      <div
+        class="flip-card-front"
+        style="background: url('/card/{item.card_no}.png'); 
+                                          background-size: contain;
+                                          background-repeat: no-repeat;
+                                          {hangedtransform(item.hanged)};"
+      />
     </div>
-  <!-- </Motion> -->
+  </div>
 </main>
+
 <style>
-  /* .item {
-    width: 200px;
-    height: 300px;
-    color: white;
-    font-size: large;
-    background-color: transparent;
-    perspective: 1000px;
-    cursor: pointer;
-    user-select: none;
-    
-  } */
   .flip-card {
     background-color: transparent;
     width: 180px;
@@ -68,23 +48,6 @@
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
-  /* 
-  .item-back{
-    background-color: white;
-    background: url('/back.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-radius: 10px;
-    
-  }
-  .item-front{
-    background-color: white;
-    background: url('/tarot-back.jpeg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-radius: 10px;
-    
-  } */
   .flipped .flip-card .flip-card-inner {
     transform: rotateY(180deg);
   }
@@ -101,7 +64,7 @@
   .flip-card-back {
     background-color: #bbb;
     color: black;
-    background: url('/back.jpg');
+    background: url("/back.jpg");
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 10px;
@@ -110,10 +73,9 @@
   .flip-card-front {
     background-color: #bbb;
     color: black;
-    background: url('/card/1.png');
+    background: url("/card/1.png");
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 10px;
-    
   }
 </style>

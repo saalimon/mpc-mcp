@@ -2,6 +2,10 @@
   import { scrollTo, scrollRef, scrollTop } from "svelte-scrolling";
   import Game from "./lib/Game.svelte";
   import Landing from "./lib/Landing.svelte";
+  import Prophecy from "./lib/Prophecy.svelte";
+  import data from "./data.json";
+  let cardList = [];
+  let cards = [];
 
   const navItems = [
     { label: "HOME", href: "home" },
@@ -10,6 +14,16 @@
     { label: "FRAME", href: "frame" },
     { label: "TALK", href: "talk" },
   ];
+  function prophecy() {
+    if (cardList.length === 4) {
+      cards = cardList.map((e) => {
+        return data["card"].find((el) => {
+          return parseInt(el.cardId) === parseInt(e.card_no);
+        });
+      });
+    }
+  }
+  $: cardList, prophecy();
 </script>
 
 <nav>
@@ -31,7 +45,9 @@
       <div class="splash  splash-img">
         <div class="center-content">
           <img src="logo.png" alt="logo" class="logo" />
-          <h1 class="title" style="opacity: 100% !important;">MONSTER CARDS PROJECT</h1>
+          <h1 class="title" style="opacity: 100% !important;">
+            MONSTER CARDS PROJECT
+          </h1>
           <a href="https://twitter.com/hashtag/MPC_MCP" class="twitter"
             >#MPC_MCP</a
           >
@@ -65,12 +81,18 @@
   </section>
   <section use:scrollRef={"cards"}>
     <div class="section" style="background-color: salmon;">
-      <Game />
+      <Game bind:cardList />
     </div>
-    
   </section>
-  <section use:scrollRef={"frame"}>
-    <Landing name="frame" />
+  <section use:scrollRef={"test"}>
+    {#if cardList.length == 4}
+      <div class="flex-container">
+        <Prophecy prophecy={cards[0]} hanged={cardList[0].hanged} />
+        <Prophecy prophecy={cards[1]} hanged={cardList[1].hanged} />
+        <Prophecy prophecy={cards[2]} hanged={cardList[2].hanged} />
+        <Prophecy prophecy={cards[3]} hanged={cardList[3].hanged} />
+      </div>
+    {/if}
   </section>
   <section use:scrollRef={"talk"}>
     <Landing name="talk" />
@@ -80,6 +102,10 @@
 <button class="corner" on:click={() => scrollTop()}>Go to top</button>
 
 <style>
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+  }
   .content {
     height: 100%;
     display: grid;
@@ -128,7 +154,6 @@
   }
   .center-content {
     margin: auto auto;
-    
   }
   .splash-img {
     background: rgba(0, 0, 0, 0.3) url("/splash1.jpg");
@@ -136,13 +161,13 @@
     background-repeat: no-repeat;
     background-blend-mode: darken;
   }
-  .corner{
-    position:fixed;
-    right:0;
-    bottom:0;
+  .corner {
+    position: fixed;
+    right: 0;
+    bottom: 0;
     opacity: 40%;
   }
-  .corner:hover{
+  .corner:hover {
     opacity: 80%;
   }
 </style>
