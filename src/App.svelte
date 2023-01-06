@@ -65,7 +65,11 @@
       <div class="splash splash-img-guide">
         <div class="center-content">
           <h1 class="title" style="color: white;">GUIDE TO AUGUR</h1>
-          <img src="MCP_W.png" alt="logo" class="logo" />
+          <a
+            href="https://reidberlin.wixsite.com/mpc-mcp?fbclid=IwAR18AhyRZf5JcuxpwgrWSIkO4Vzu733yVyJwMXVYEvv7ur4plY_i88rUtjY"
+          >
+            <img src="MCP_W.png" alt="logo" class="logo" />
+          </a>
           <p class="content-font" style="font-size: 20px;">
             ทำนายดวงชะตาของคุณในวันนี้ โดยเมื่อทำการเลือกไพ่ออกมาสี่ใบ <br />
             โดยที่จะเรียงคำทำนายในด้าน การงาน สุขภาพ ความรัก และโชคลาภ ตามลำดับ
@@ -80,22 +84,24 @@
   </section>
   <section use:scrollRef={"cards"}>
     <div class="section" style="background-color: salmon;">
-       <div class="splash splash-img">
-      <Game bind:cardList />
-    </div>
+      <div class="splash splash-img">
+        <Game bind:cardList />
+      </div>
     </div>
   </section>
   <section use:scrollRef={"test"}>
     {#if cardList.length == 4}
-    <div class="summary-section" >
-      <h2 class="title" style="opacity: 100% !important;">The Prophcey Result</h2>
-      <div class="flex-container">
-        <Prophecy prophecy={cards[0]} hanged={cardList[0].hanged} />
-        <Prophecy prophecy={cards[1]} hanged={cardList[1].hanged} />
-        <Prophecy prophecy={cards[2]} hanged={cardList[2].hanged} />
-        <Prophecy prophecy={cards[3]} hanged={cardList[3].hanged} />
+      <div class="summary-section">
+        <h2 class="title" style="opacity: 100% !important;">
+          The Prophcey Result
+        </h2>
+        <div class="flex-container">
+          <Prophecy prophecy={cards[0]} hanged={cardList[0].hanged} />
+          <Prophecy prophecy={cards[1]} hanged={cardList[1].hanged} />
+          <Prophecy prophecy={cards[2]} hanged={cardList[2].hanged} />
+          <Prophecy prophecy={cards[3]} hanged={cardList[3].hanged} />
+        </div>
       </div>
-    </div>
     {/if}
   </section>
 
