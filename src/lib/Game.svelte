@@ -76,9 +76,7 @@
 
   <!-- </Motion> -->
   <!-- </AnimateSharedLayout> -->
-  <button on:click={card == 4 ? reset : shuffle}
-    >{card == 4 ? "reset" : "shuffle"}</button
-  >
+  <button class="raise" on:click={shuffle}>Reveal your cards</button>
 </div>
 
 <style>
