@@ -82,7 +82,7 @@
       </div>
     </div>
   </section>
-  <section use:scrollRef={"cards"}>
+  <section use:scrollRef={"augur"}>
     <div class="section" style="background-color: salmon;">
       <div class="splash splash-img">
         <Game bind:cardList />
@@ -91,15 +91,17 @@
   </section>
   <section use:scrollRef={"test"}>
     {#if cardList.length == 4}
-      <div class="summary-section">
-        <h2 class="title" style="opacity: 100% !important;">
-          The Prophcey Result
-        </h2>
-        <div class="flex-container">
-          <Prophecy prophecy={cards[0]} hanged={cardList[0].hanged} />
-          <Prophecy prophecy={cards[1]} hanged={cardList[1].hanged} />
-          <Prophecy prophecy={cards[2]} hanged={cardList[2].hanged} />
-          <Prophecy prophecy={cards[3]} hanged={cardList[3].hanged} />
+      <div class="section-100 ">
+        <div class="splash summary-section">
+          <h2 class="title" style="opacity: 100% !important;">
+            The Prophcey Result
+          </h2>
+          <div class="flex-container">
+            <Prophecy prophecy={cards[0]} hanged={cardList[0].hanged} />
+            <Prophecy prophecy={cards[1]} hanged={cardList[1].hanged} />
+            <Prophecy prophecy={cards[2]} hanged={cardList[2].hanged} />
+            <Prophecy prophecy={cards[3]} hanged={cardList[3].hanged} />
+          </div>
         </div>
       </div>
     {/if}
@@ -128,6 +130,11 @@
   }
   .section {
     height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+  .section-100 {
+    height: 100%;
     width: 100%;
     position: relative;
   }

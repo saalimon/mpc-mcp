@@ -7,8 +7,7 @@
   <div class="panel">
     <div style="color: black">
       <div>
-
-        <div class="flip-card">
+        <div class="flip-card" style="margin: 0 auto; width: 200px;">
           <div class="flip-card-inner">
             <div class="flip-card-back" />
             <div
@@ -22,13 +21,23 @@
         </div>
         <h2>{prophecy["cardName"]}</h2>
         {#if hanged && prophecy["isHaveProphecyHanged"]}
-          <p><strong>การงาน</strong> - {prophecy["hangedProphecy"]["working"]}</p>
-          <p><strong>สุขภาพ</strong> - {prophecy["hangedProphecy"]["health"]}</p>
+          <p>
+            <strong>การงาน</strong> - {prophecy["hangedProphecy"]["working"]}
+          </p>
+          <p>
+            <strong>สุขภาพ</strong> - {prophecy["hangedProphecy"]["health"]}
+          </p>
           <p><strong>ความรัก</strong> - {prophecy["hangedProphecy"]["love"]}</p>
-          <p><strong>การเเงิน</strong> - {prophecy["hangedProphecy"]["money"]}</p>
+          <p>
+            <strong>การเเงิน</strong> - {prophecy["hangedProphecy"]["money"]}
+          </p>
         {:else if hanged && prophecy.isHaveProphecyHanged == false}
-        <p class="remark"><strong>แต่คุณได้รับไพ่ใบนี้แบบกลับหัว ดังนั้นความหมายของคำทำนายจะตรงข้าม</strong></p>
-        <p><strong>การงาน</strong> - {prophecy["prophecy"]["working"]}</p>
+          <p class="remark">
+            <strong
+              >แต่คุณได้รับไพ่ใบนี้แบบกลับหัว ดังนั้นความหมายของคำทำนายจะตรงข้าม</strong
+            >
+          </p>
+          <p><strong>การงาน</strong> - {prophecy["prophecy"]["working"]}</p>
           <p><strong>สุขภาพ</strong> - {prophecy["prophecy"]["health"]}</p>
           <p><strong>ความรัก</strong> - {prophecy["prophecy"]["love"]}</p>
           <p><strong>การเเงิน</strong> - {prophecy["prophecy"]["money"]}</p>
