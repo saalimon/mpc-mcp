@@ -29,14 +29,23 @@
                    <!-- show all the prophcey but will do as one prophecy -->
                   <h2>คุณได้รับไพ่ {prophecy["cardName"]}</h2>
                   <p>ด้านการงาน : {prophecy.prophecy["working"]}</p>
-                  <p>ด้านการสขภาพ : {prophecy.prophecy["health"]}</p>
+                  <p>ด้านการสุขภาพ : {prophecy.prophecy["health"]}</p>
                   <p>ด้านการความรัก : {prophecy.prophecy["love"]}</p>
                   <p>ด้านการโชคลาภ : {prophecy.prophecy["money"]}</p>
                   
                   <!-- show remark if the card is hanged and don't have the specifiy phophecy -->
-                  <!-- {#if prophecy["isHaveProphecyHanged"] == false && flipped == true} 
-                  <p class="remark">แต่คุณได้รับไพ่ใบนี้แบบกลับหัว ดังนั้นคำทำนายจะให้ผลตรงกันข้าม</p>
-                  {/if} -->
+                  {#if prophecy.cardId == '77' && prophecy["isHaveProphecyHanged"] == false }
+                  <p class="remark">หากไพ่นี้กลับด้าน การงาน การสุขภาพและความรักของคุณจะตรงกันข้ามและถูกผู้ที่มีอำนาจในด้านนั้นๆควบคุมอยู่ ส่วนสำหรับการเงินและโชคลาภจะดีอย่างราวกับตกไปในขุมทรัพย์แห่งชีวิต</p>
+                  {:else if prophecy["isHaveProphecyHanged"] == false } 
+                  <p class="remark">ถ้าคุณได้รับไพ่ใบนี้แบบกลับหัว ดังนั้นคำทำนายจะให้ผลตรงกันข้าม</p>
+    
+                  {:else}
+                  <h2>แต่ถ้าได้รับคำทำนายแบบกลับหัว</h2>
+                  <p>ด้านการงาน : {prophecy.hangedProphecy["working"]}</p>
+                  <p>ด้านการสุขภาพ : {prophecy.hangedProphecy["health"]}</p>
+                  <p>ด้านการความรัก : {prophecy.hangedProphecy["love"]}</p>
+                  <p>ด้านการโชคลาภ : {prophecy.hangedProphecy["money"]}</p>
+                  {/if}
 
                 </div>
               </div>

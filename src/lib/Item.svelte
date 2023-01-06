@@ -2,35 +2,34 @@
   // import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
   export let item;
   export let flipped;
-  export let cardList = []
-  const hangedtransform = (h) =>{
-    if(item.hanged===1)
-      return "transform: rotateX(180deg);"
-    else
-      return "transform: rotateY(180deg);"
-  }
-  $: hanged = hangedtransform(item.hanged)
+  export let cardList = [];
+  const hangedtransform = (h) => {
+    if (item.hanged === 1) return "transform: rotateX(180deg);";
+    else return "transform: rotateY(180deg);";
+  };
+  $: hanged = hangedtransform(item.hanged);
   flipped = false;
-  function getCard(){
-    flipped = !flipped
-    cardList = [...cardList, String(item.card_no) ]
+  function getCard() {
+    flipped = !flipped;
+    cardList = [...cardList, String(item.card_no)];
   }
 </script>
 
-<main class:flipped on:click="{getCard}">
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-back">
-        </div>
-        <div class="flip-card-front" style="background: url('/card/{item.card_no}.png'); 
+<main class:flipped on:click={getCard}>
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-back" />
+      <div
+        class="flip-card-front"
+        style="background: url('/card/{item.card_no}.png'); 
                                             background-size: contain;
                                             background-repeat: no-repeat;
-                                            {hangedtransform(item.hanged)};">
-        </div>
-        
-      </div>
+                                            {hangedtransform(item.hanged)};"
+      />
     </div>
+  </div>
 </main>
+
 <style>
   .flip-card {
     background-color: transparent;
@@ -66,7 +65,7 @@
   .flip-card-back {
     background-color: #bbb;
     color: black;
-    background: url('/back.jpg');
+    background: url("/back.jpg");
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 10px;
@@ -75,10 +74,9 @@
   .flip-card-front {
     background-color: #bbb;
     color: black;
-    background: url('/card/1.png');
+    background: url("/card/1.png");
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 10px;
-    
   }
 </style>

@@ -12,6 +12,7 @@
   let flipped = false;
   let cardNo = 89; // number of tarot card
   let rerender = true;
+  let isClick = false;
   
   
   function arrCard(num){
@@ -37,6 +38,7 @@
         i: i,
         card_no: card_no,
         hanged: hanged,
+        isClick: true,
       };
     })
     .sort((x, y) => x.r - y.r);
@@ -56,6 +58,16 @@
     list = arrCard(cardNo);
     rerender = !rerender
     cardList = []
+  }
+
+  function reset() {
+    flipped = false;
+    by++;
+    card = 1
+    list = arrCard(cardNo);
+    rerender = !rerender
+    cardList = []
+    isClick = false;
   }
 </script>
 
@@ -77,7 +89,7 @@
       
     <!-- </Motion> -->
   <!-- </AnimateSharedLayout> -->
-  <button on:click={shuffle} >shuffle</button>
+  <button on:click={ card == 4 ? reset : shuffle} >{card == 4 ? "reset" :"shuffle"}</button>
 </div>
 
 <style>

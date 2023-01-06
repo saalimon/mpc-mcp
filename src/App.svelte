@@ -33,7 +33,7 @@
     { label: "HOME", href: "home" },
     { label: "GUIDE", href: "guide" },
     { label: "AUGUR", href: "augur" },
-    { label: "FRAME", href: "frame" },
+    // { label: "FRAME", href: "frame" },
     { label: "TALK", href: "talk" },
   ];
   function prophecy() {
@@ -108,7 +108,7 @@
   </section>
   <section use:scrollRef={"prophecy"}>
     {#if cardList.length == 4}
-      <p>{cardList[0]}</p>
+      <!-- <p>{cardList[0]}</p> -->
       <Prophecy prophecy={cards[0]}  postion={0}/>
       <Prophecy prophecy={cards[1]} postion={1}/>
       <Prophecy prophecy={cards[2]} postion={2}/>
