@@ -1,21 +1,49 @@
 <script>
-  import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
-  import AnimateSharedLayout from "svelte-motion/src/components/AnimateSharedLayout/AnimateSharedLayout.svelte";
+// @ts-nocheck
+
+  // import Motion from "svelte-motion/src/motion/MotionSSR.svelte";
+  // import AnimateSharedLayout from "svelte-motion/src/components/AnimateSharedLayout/AnimateSharedLayout.svelte";
   import Item from "./Item.svelte";
-  let card = 1
-  let flipped = false
-  let list = Array(1)
+  import { flip } from "svelte/animate";
+  import Landing from "./Landing.svelte";
+
+  export let cardList = []
+  let card = 1; // initial card for each turn
+  let flipped = false;
+  let cardNo = 89; // number of tarot card
+  let rerender = true;
+  let isClick = false;
+  
+  
+  function arrCard(num){
+    const nums = new Set();
+    while(nums.size !== 8) {
+      nums.add(Math.floor(Math.random() * num));
+    }
+    const card_list = [...nums]
+    return Array(card)
     .fill()
     .map((_, i) => {
-      const r = Math.random(),
-        g = Math.random(),
-        b = Math.random(),
-        card_no = Math.floor(Math.random() * 78),
-        hanged = Math.floor(Math.random() * 2);
-      const t = (r + g + b) / 255;
-      return { r: r / t, g: g / t, b: b / t, i:i, card_no: card_no, hanged: hanged};
+      let r = Math.random(),
+      g = Math.random(),
+      b = Math.random(),
+      card_no = card_list[i], // 0 or 1
+      hanged = Math.floor(Math.random() * 2);
+      const t = (r + g + b) / 255;  
+      nums.add(card_no);
+      return {
+        r: r / t,
+        g: g / t,
+        b: b / t,
+        i: i,
+        card_no: card_no,
+        hanged: hanged,
+        isClick: true,
+      };
     })
     .sort((x, y) => x.r - y.r);
+  }
+  let list = arrCard(cardNo)
   const sort = (t) => {
     list = list.sort((x, y) => x[t] - y[t]);
   };
@@ -24,33 +52,44 @@
   $: sort(by % 3 === 1 ? "r" : by % 3 === 0 ? "b" : "g");
   let gap = 20;
   function shuffle() {
-    flipped = false
+    flipped = false;
     by++;
-		list = Array(4)
-    .fill()
-    .map((_, i) => {
-      const r = Math.random(),
-        g = Math.random(),
-        b = Math.random(),
-        card_no = Math.floor(Math.random() * 78),
-        hanged = Math.floor(Math.random() * 2);
-        const t = (r + g + b) / 255;
-      return { r: r / t, g: g / t, b: b / t, i:i, card_no: card_no, hanged: hanged};
-    })
+    card = 4
+    list = arrCard(cardNo);
+    rerender = !rerender
+    cardList = []
+  }
+
+  function reset() {
+    flipped = false;
+    by++;
+    card = 1
+    list = arrCard(cardNo);
+    rerender = !rerender
+    cardList = []
+    isClick = false;
   }
 </script>
 
 <div class="background">
-  <AnimateSharedLayout type="crossfade">
-    <Motion let:motion={grid} layout>
-      <div use:grid class="container" style={"grid-gap:" + gap + "px"}>
-        {#each list as item (item.i)}
-          <Item {item} flipped={flipped}/>
-        {/each}
-      </div>
-    </Motion>
-  </AnimateSharedLayout>
-  <button on:click={shuffle}>shuffle</button>
+  <!-- <AnimateSharedLayout type="crossfade"> -->
+    <!-- <Motion let:motion={grid} layout> -->
+        <div class="container" style="grid-gap: {gap}px; grid-template-columns: repeat({card}, 1fr);">
+          <!-- {#key rerender} -->
+          {#each list as item (item.i)}
+            <div animate:flip={{ duration: 500 }}>
+              {#key rerender}
+                <Item bind:cardList {item} {flipped} />
+              {/key}
+            </div>
+
+          {/each}
+          <!-- {/key} -->
+        </div>
+      
+    <!-- </Motion> -->
+  <!-- </AnimateSharedLayout> -->
+  <button on:click={ card == 4 ? reset : shuffle} >{card == 4 ? "reset" :"shuffle"}</button>
 </div>
 
 <style>
@@ -70,7 +109,9 @@
   }
   .container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-items: center; /* adjusted */
+    /* grid-template-columns: repeat(card, 1fr); */
   }
 
   button {

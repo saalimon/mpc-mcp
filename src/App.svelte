@@ -2,14 +2,50 @@
   import { scrollTo, scrollRef, scrollTop } from "svelte-scrolling";
   import Game from "./lib/Game.svelte";
   import Landing from "./lib/Landing.svelte";
-
+  import Prophecy from "./lib/Prophecy.svelte";
+  import data from "./data.json";
+  let cardList = [];
+  let cards = [];
+  let flipped = [];
+  let test = {
+    cardId: "0",
+    cardName: "THE INVASION",
+    isHaveProphecyHanged: true,
+    prophecy: {
+      working:
+        "จะเกิดปัญหาที่ผ่านพ้นไปได้ค่อนข้างลำบาก เพราะจะมีคู่แข่งมาขัดขวางการทำงาน และคุณได้เจอกับการเปลี่ยนแปลงครั้งใหญ่ในหน้าที่การงาน",
+      health:
+        "โปรดระวังตัวไว้ เพราะจะคุณจะเป็นโรคภัยไข้เจ็บ หากมีโรคประจําตัวอยู่แล้วก็อาจจะมีโรคอื่นๆเพิ่มมาอีก",
+      love: "จะมีบุคคลที่เข้ามาหาคุณ หากคุณยังไม่มีคู่ คนๆนั้นจะมาเป็นคู่ของคุณ และเขาจะเป็นตัวแปรสำคัญ ในการเปลี่ยนชีวิตการเป็นอยู่ของคุณ หากคุณมีคู่แล้ว ไพ่ใบนี้จะหมายถึงจะมีบุคคลที่สาม เข้ามาสร้างอุปสรรค เป็นแบบทดสอบ ให้ความสัมพันธ์ของคุณ",
+      money:
+        "เกิดการเปลี่ยนผันทางการเงินของคุณ ในทางที่ดี แต่ก็ต้องแลกกับบางสิ่งที่จะไม่เหมือนเดิมต่อไป",
+    },
+    hangedProphecy: {
+      working:
+        "จะเป็นไปได้ราบรื่นเพราะจะมีคนคนหนึ่งมาเปลี่ยนแปลงการทำงานของคุณ",
+      health: "วางใจได้ สุขภาพของคุณเป็นปกติดี ไม่มีอาการแทรกซ้อน",
+      love: "ยังต้องรอต่อไป แต่เขาคนนั้นมาแน่หากคุณมีคู่แล้ว ผู้มาเยือนในความหมายไพ่ใบนี้จะหมายถึง ญาติผู้ใหญ่คนใกล้ตัวมามีส่วนร่วมช่วยผลักดันความรักของคุณ",
+      money:
+        "เกิดการเปลี่ยนผันทางการเงินของคุณ ในทางที่ไม่ดีนัก แต่คุณจะได้ของสำคัญในชีวิตกลับมา",
+    },
+  };
   const navItems = [
     { label: "HOME", href: "home" },
-    { label: "AUGUR", href: "angur" },
-    { label: "CARDS", href: "cards" },
-    { label: "FRAME", href: "frame" },
+    { label: "GUIDE", href: "guide" },
+    { label: "AUGUR", href: "augur" },
+    // { label: "FRAME", href: "frame" },
     { label: "TALK", href: "talk" },
   ];
+  function prophecy() {
+    if (cardList.length === 4) {
+      cards = cardList.map((e) => {
+        return data["card"].find((el) => {
+          return el.cardId === e;
+        });
+      });
+    }
+  }
+  $: cardList, prophecy();
 </script>
 
 <nav>
@@ -28,32 +64,34 @@
 <div class="content">
   <section use:scrollRef={"home"}>
     <div class="section">
-      <div class="splash  splash-img">
+      <div class="splash  splash-img-home">
         <div class="center-content">
           <img src="logo.png" alt="logo" class="logo" />
-          <h1 class="title" style="opacity: 100% !important;">MONSTER CARDS PROJECT</h1>
+          <h1 class="title" style="opacity: 100% !important;">
+            MONSTER CARDS PROJECT
+          </h1>
           <a href="https://twitter.com/hashtag/MPC_MCP" class="twitter"
             >#MPC_MCP</a
           >
         </div>
         <h4 class="footer">
-          *นี่เป็นกิจกรรมที่จัดขึ้นภายในคอมมูมอนสเตอร์พรอมเท่านั้น(MPC)
-          ผู้เข้าชมที่มาจากภายนอก ขอความร่วมมือ ไม่ฟลอโล่ว ไม่รีทวิต ไม่โควททวิต
-          หรือไม่กดเฟปทวิตของผู้เล่นในคอมมูนี้อย่างเด็ดขาด
-          ขอบคุณที่ให้ความร่วมมือ*
+          *นี่เป็นกิจกรรมที่จัดขึ้นภายในคอมมูมอนสเตอร์พรอมเท่านั้น(MPC)*<br />
+          *ผู้เข้าชมที่มาจากภายนอก ขอความร่วมมือ ไม่ฟลอโล่ว ไม่รีทวิต ไม่โควททวิต
+          หรือไม่กดเฟปทวิตของผู้เล่นในคอมมูนี้อย่างเด็ดขาด ขอบคุณที่ให้ความร่วมมือ*
         </h4>
       </div>
     </div>
   </section>
 
-  <section use:scrollRef={"angur"}>
+  <section use:scrollRef={"guide"}>
     <div class="section" style="background-color: #808080;">
-      <div class="splash">
+      <div class="splash splash-img-guide">
         <div class="center-content">
-          <h1 class="title" style="color: white;">ANGUR</h1>
+          <h1 class="title" style="color: white;">GUIDE TO AUGUR</h1>
           <img src="MCP_W.png" alt="logo" class="logo" />
           <p class="content-font" style="font-size: 20px;">
-            มาทำนายดวงชะตาของคุณวันนี้กัน
+            ทำนายดวงชะตาของคุณในวันนี้ โดยเมื่อทำการเลือกไพ่ออกมาสี่ใบ <br />
+            โดยที่จะเรียงคำทำนายในด้าน การงาน สุขภาพ ความรัก และโชคลาภ ตามลำดับ
           </p>
           <p class="content-font" style="font-size: 12px;">
             *นี่เป็นกิจกรรมที่จัดเพื่อความบันเทิงเท่านั้น
@@ -63,77 +101,30 @@
       </div>
     </div>
   </section>
-  <section use:scrollRef={"cards"}>
-    <div class="section" style="background-color: salmon;">
-      <Game />
+  <section use:scrollRef={"augur"}>
+    <div class="section" style="background-color: rgba(0, 0, 0, 0.4);">
+      <Game bind:cardList />
     </div>
-    
   </section>
-  <section use:scrollRef={"frame"}>
-    <Landing name="frame" />
+  <section use:scrollRef={"prophecy"}>
+    {#if cardList.length == 4}
+      <!-- <p>{cardList[0]}</p> -->
+      <Prophecy prophecy={cards[0]}  postion={0}/>
+      <Prophecy prophecy={cards[1]} postion={1}/>
+      <Prophecy prophecy={cards[2]} postion={2}/>
+      <Prophecy prophecy={cards[3]} postion={3}/>
+    {/if}
   </section>
+
+  <!-- <section use:scrollRef={"test"}>
+    <Prophecy prophecy={test} />
+  </section> -->
   <section use:scrollRef={"talk"}>
     <Landing name="talk" />
   </section>
 </div>
 
-<button on:click={() => scrollTop()}>Go to top</button>
+<button class="corner" on:click={() => scrollTop()}>Go to top</button>
 
 <style>
-  .content {
-    height: 100%;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
-  }
-  .section {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-  }
-  .splash {
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center; /* align horizontal */
-    align-items: center; /* align vertical */
-    flex-direction: column;
-  }
-  .logo {
-    width: 167px;
-    height: 167px;
-    object-fit: cover;
-  }
-  .title {
-    font-family: droid-serif, serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 68px;
-  }
-  .content-font {
-    font-family: "Nunito", sans-serif;
-    font-size: 19px;
-    color: inherit;
-  }
-  .twitter {
-    font-family: "Nunito", sans-serif;
-    font-size: 19px;
-    color: inherit;
-  }
-  .footer {
-    margin-top: auto;
-    font-family: "Nunito", sans-serif;
-    font-size: 12px;
-  }
-  .center-content {
-    margin: auto auto;
-    
-  }
-  .splash-img {
-    background: rgba(0, 0, 0, 0.3) url("/splash1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-blend-mode: darken;
-  }
 </style>
