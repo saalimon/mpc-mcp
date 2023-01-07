@@ -150,7 +150,7 @@ nav {
   grid-template-columns: 1fr;
 }
 .section {
-  height: 100vh;
+
   width: 100%;
   position: relative;
 }
