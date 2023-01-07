@@ -173,6 +173,7 @@
     font-family: "Nunito", sans-serif;
     font-size: 19px;
     color: inherit;
+    color: white;
   }
   .twitter {
     font-family: "Nunito", sans-serif;
