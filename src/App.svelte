@@ -89,10 +89,10 @@
       </div>
     </div>
   </section>
-  <section use:scrollRef={"test"}>
+  <section use:scrollRef={"result"}>
     {#if cardList.length == 4}
-      <div class="section-100 ">
-        <div class="splash summary-section">
+      <div class="section-100 summary-section">
+        <div class="splash ">
           <h2 class="title" style="opacity: 100% !important;">
             The Prophcey Result
           </h2>
@@ -111,7 +111,10 @@
     <Prophecy prophecy={test} />
   </section> -->
   <section use:scrollRef={"talk"}>
-    <Landing name="talk" />
+    <div class="splash-img-talk">
+
+      <Landing name="talk" />
+    </div>
   </section>
 </div>
 
@@ -129,7 +132,6 @@
     grid-template-columns: 1fr;
   }
   .section {
-    height: 100vh;
     width: 100%;
     position: relative;
   }
@@ -140,24 +142,21 @@
   }
 
   .summary-section {
-    height: auto;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-
     background: rgba(0, 0, 0, 0.8) url("/splash3.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: darken;
   }
   .splash {
-    height: 100%;
+    padding: 100px;
+    height: auto;
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
     flex-direction: column;
+    min-height: 100vh;
   }
   .logo {
     width: 167px;
@@ -202,5 +201,22 @@
   }
   .corner:hover {
     opacity: 80%;
+  }
+
+  .splash-img-talk {
+    background: rgba(0, 0, 0, 0.0) url("/splash6.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+  }
+
+  @media (max-width: 900px) {
+   .splash {
+    padding: 40px;
+   }
+   .flex-container {
+    display: flex;
+    flex-direction: column;
+  }
   }
 </style>

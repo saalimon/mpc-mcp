@@ -65,11 +65,12 @@
   }
 </script>
 
+<main>
 <div class="background">
   <!-- <AnimateSharedLayout type="crossfade"> -->
   <!-- <Motion let:motion={grid} layout> -->
 
-  <h1 class="title" style="opacity: 100% !important;">See Your Prophecy</h1>
+  <h1 class="title">Augur Your Fortune</h1>
   <div
     class="container"
     style="grid-gap: {gap}px; grid-template-columns: repeat({card}, 1fr);"
@@ -89,6 +90,7 @@
   <!-- </AnimateSharedLayout> -->
   <button class="raise" on:click={ cardList.length ==4 ? reset : shuffle} >{ cardList.length ==4 ? "Reveal Again" : "Reveal your cards"}</button>
 </div>
+</main>
 
 <style>
   :global(*) {
@@ -112,6 +114,11 @@
     /* grid-template-columns: repeat(card, 1fr); */
   }
 
+  h1 {
+    margin-top: 0;
+    margin-bottom: 100px;
+  }
+
   button {
     background-color: #ff2e8d;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -131,5 +138,27 @@
   .raise:focus {
     box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
     transform: translateY(-0.25em);
+  }
+  main {
+    text-align: center;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+  @media (min-width: 640px) {
+    main {
+      max-width: none;
+    }
+    .title {
+      font-size: 3.2em;
+    }
+  }
+
+  @media (max-width: 640px) {
+    main {
+      max-width: none;
+    }
+    .title {
+      font-size: 3.2em;
+    }
   }
 </style>
