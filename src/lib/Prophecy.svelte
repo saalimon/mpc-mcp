@@ -37,6 +37,25 @@
           <p>
             <strong>การเงิน</strong> - {prophecy["hangedProphecy"]["money"]}
           </p>
+        {:else if hanged && prophecy.isHaveProphecyHanged == false && prophecy.cardId == 63}
+          <p class="remark">
+            <strong
+              >เนื่องจากคุณได้รับไพ่ใบนี้แบบกลับหัว
+              ดังนั้นความหมายของคำทำนายจะเป็นดังต่อไปนี้</strong
+            >
+          </p>
+          <p><strong>การงาน</strong> - {prophecy["prophecy"]["working"]}</p>
+          <p><strong>สุขภาพ</strong> - {prophecy["prophecy"]["health"]}</p>
+          <p><strong>ความรัก</strong> - {prophecy["prophecy"]["love"]}</p>
+          <p><strong>การเงิน</strong> - {prophecy["prophecy"]["money"]}</p>
+
+          <p class="remark">
+            <strong
+              >note: ไพ่ใบนี้ไม่มีความหมายเป็นพิเศษเวลากลับหัวหากจับได้ใบเดียว
+              เเต่หากจับได้ร่วมกับใบอื่น
+              ให้นำเอาความหมายของไพ่เหล่านันในเชิงกลับหัวมาร่วมตีความด้วย</strong
+            >
+          </p>
         {:else if hanged && prophecy.isHaveProphecyHanged == false && prophecy.cardId == 77}
           <p class="remark">
             <strong
