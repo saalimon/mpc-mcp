@@ -112,7 +112,6 @@
   </section> -->
   <section use:scrollRef={"talk"}>
     <div class="splash-img-talk">
-
       <Landing name="talk" />
     </div>
   </section>
@@ -179,6 +178,7 @@
     font-family: "Nunito", sans-serif;
     font-size: 19px;
     color: inherit;
+    color: white;
   }
   .footer {
     margin-top: auto;
@@ -205,19 +205,19 @@
   }
 
   .splash-img-talk {
-    background: rgba(0, 0, 0, 0.0) url("/splash6.jpg");
+    background: rgba(0, 0, 0, 0) url("/splash6.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: darken;
   }
 
   @media (max-width: 900px) {
-   .splash {
-    padding: 40px;
-   }
-   .flex-container {
-    display: flex;
-    flex-direction: column;
-  }
+    .splash {
+      padding: 40px;
+    }
+    .flex-container {
+      display: flex;
+      flex-direction: column;
+    }
   }
 </style>
