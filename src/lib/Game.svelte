@@ -8,7 +8,7 @@
   export let cardList = [];
   let card = 1; // initial card for each turn
   let flipped = false;
-  let cardNo = 89; // number of tarot card
+  let cardNo = 196; // number of tarot card
   let rerender = true;
 
   function arrCard(num) {
