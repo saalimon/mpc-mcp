@@ -2,6 +2,9 @@
   export let item;
   export let flipped;
   export let cardList = [];
+
+  export let isEnable;
+
   const hangedtransform = (h) => {
     if (item.hanged === 1) return "transform: rotateX(180deg);";
     else return "transform: rotateY(180deg);";
@@ -9,8 +12,12 @@
   $: hanged = hangedtransform(item.hanged);
   flipped = false;
   function getCard() {
-    flipped = !flipped;
-    cardList = [...cardList, item];
+    if (isEnable) {
+      if (flipped == false) {
+        flipped = !flipped;
+        cardList = [...cardList, item];
+      }
+    }
   }
 </script>
 
@@ -77,5 +84,5 @@
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 10px;
-  }
+  }  
 </style>

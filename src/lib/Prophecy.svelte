@@ -1,11 +1,35 @@
 <script>
   export let prophecy;
   export let hanged;
+  export let order = 0;
+
+  function displayProphecy(hanged, order) {
+    let checkHanged =
+      hanged && prophecy.isHaveProphecyHanged == true
+        ? "hangedProphecy"
+        : "prophecy";
+    if (order === 0) {
+      return `<p>
+          <strong>การงาน</strong> - ${prophecy[checkHanged]["working"]}
+        </p>`;
+    } else if (order === 1) {
+      return `<p>
+          <strong>สุขภาพ</strong> - ${prophecy[checkHanged]["health"]}
+        </p>`;
+    } else if (order === 2) {
+      return `<p><strong>ความรัก</strong> - ${prophecy[checkHanged]["love"]}
+        </p>`;
+    } else {
+      return `<p>
+          <strong>การเงิน</strong> - ${prophecy[checkHanged]["money"]}
+        </p>`;
+    }
+  }
 </script>
 
 <main>
   <div class="panel">
-    <div style="color: black">
+    <div class="details">
       <div>
         <div class="flip-card" style="margin: 0 auto;">
           <div class="flip-card-inner">
@@ -19,75 +43,55 @@
             />
           </div>
         </div>
-        <h2>{prophecy["cardName"]}</h2>
-        {#if hanged && prophecy["isHaveProphecyHanged"]}
-          <p class="remark">
-            <strong
-              >เนื่องจากคุณได้รับไพ่ใบนี้แบบกลับหัว
-              ดังนั้นความหมายของคำทำนายจะเป็นดังต่อไปนี้</strong
-            >
-          </p>
-          <p>
-            <strong>การงาน</strong> - {prophecy["hangedProphecy"]["working"]}
-          </p>
-          <p>
-            <strong>สุขภาพ</strong> - {prophecy["hangedProphecy"]["health"]}
-          </p>
-          <p><strong>ความรัก</strong> - {prophecy["hangedProphecy"]["love"]}</p>
-          <p>
-            <strong>การเงิน</strong> - {prophecy["hangedProphecy"]["money"]}
-          </p>
-        {:else if hanged && prophecy.isHaveProphecyHanged == false && prophecy.cardId == 63}
-          <p class="remark">
-            <strong
-              >เนื่องจากคุณได้รับไพ่ใบนี้แบบกลับหัว
-              ดังนั้นความหมายของคำทำนายจะเป็นดังต่อไปนี้</strong
-            >
-          </p>
-          <p><strong>การงาน</strong> - {prophecy["prophecy"]["working"]}</p>
-          <p><strong>สุขภาพ</strong> - {prophecy["prophecy"]["health"]}</p>
-          <p><strong>ความรัก</strong> - {prophecy["prophecy"]["love"]}</p>
-          <p><strong>การเงิน</strong> - {prophecy["prophecy"]["money"]}</p>
-
-          <p class="remark">
-            <strong
-              >note: ไพ่ใบนี้ไม่มีความหมายเป็นพิเศษเวลากลับหัวหากจับได้ใบเดียว
-              เเต่หากจับได้ร่วมกับใบอื่น
-              ให้นำเอาความหมายของไพ่เหล่านันในเชิงกลับหัวมาร่วมตีความด้วย</strong
-            >
-          </p>
-        {:else if hanged && prophecy.isHaveProphecyHanged == false && prophecy.cardId == 77}
-          <p class="remark">
-            <strong
-              >หากไพ่นี้กลับด้าน การงาน
-              การสุขภาพและความรักของคุณจะตรงกันข้ามและถูกผู้ที่มีอำนาจในด้านนั้นๆควบคุมอยู่
-              ส่วนสำหรับการเงินและโชคลาภจะดีอย่างราวกับตกไปในขุมทรัพย์แห่งชีวิต</strong
-            >
-          </p>
-          <p><strong>การงาน</strong> - {prophecy["prophecy"]["working"]}</p>
-          <p><strong>สุขภาพ</strong> - {prophecy["prophecy"]["health"]}</p>
-          <p><strong>ความรัก</strong> - {prophecy["prophecy"]["love"]}</p>
-          <p><strong>การเงิน</strong> - {prophecy["prophecy"]["money"]}</p>
-        {:else if hanged && prophecy.isHaveProphecyHanged == false}
-          <p class="remark">
-            <strong
-              >เนื่องจากคุณได้รับไพ่ใบนี้แบบกลับหัว
-              ดังนั้นความหมายของคำทำนายจะตรงข้าม</strong
-            >
-          </p>
-          <p><strong>การงาน</strong> - {prophecy["prophecy"]["working"]}</p>
-          <p><strong>สุขภาพ</strong> - {prophecy["prophecy"]["health"]}</p>
-          <p><strong>ความรัก</strong> - {prophecy["prophecy"]["love"]}</p>
-          <p><strong>การเงิน</strong> - {prophecy["prophecy"]["money"]}</p>
-        {:else}
-          <p>
-            <strong>คำทำนายของไพ่ใบนี้จะเป็นดังต่อไปนี้</strong>
-          </p>
-          <p><strong>การงาน</strong> - {prophecy["prophecy"]["working"]}</p>
-          <p><strong>สุขภาพ</strong> - {prophecy["prophecy"]["health"]}</p>
-          <p><strong>ความรัก</strong> - {prophecy["prophecy"]["love"]}</p>
-          <p><strong>การเงิน</strong> - {prophecy["prophecy"]["money"]}</p>
-        {/if}
+        <div class="desc">
+          <h2>{prophecy["cardName"]}</h2>
+          {#if hanged && prophecy["isHaveProphecyHanged"]}
+            <p class="remark">
+              <strong
+                >เนื่องจากคุณได้รับไพ่ใบนี้แบบกลับหัว
+                ดังนั้นความหมายของคำทำนายจะเป็นดังต่อไปนี้</strong
+              >
+            </p>
+            {@html displayProphecy(hanged, order)}
+          {:else if hanged && prophecy.isHaveProphecyHanged == false && prophecy.cardId == 63}
+            <p class="remark">
+              <strong
+                >เนื่องจากคุณได้รับไพ่ใบนี้แบบกลับหัว
+                ดังนั้นความหมายของคำทำนายจะเป็นดังต่อไปนี้</strong
+              >
+            </p>
+            {@html displayProphecy(hanged, order)}
+            <p class="remark">
+              <strong
+                >note: ไพ่ใบนี้ไม่มีความหมายเป็นพิเศษเวลากลับหัวหากจับได้ใบเดียว
+                เเต่หากจับได้ร่วมกับใบอื่น
+                ให้นำเอาความหมายของไพ่เหล่านันในเชิงกลับหัวมาร่วมตีความด้วย</strong
+              >
+            </p>
+          {:else if hanged && prophecy.isHaveProphecyHanged == false && prophecy.cardId == 77}
+            <p class="remark">
+              <strong
+                >หากไพ่นี้กลับด้าน การงาน
+                การสุขภาพและความรักของคุณจะตรงกันข้ามและถูกผู้ที่มีอำนาจในด้านนั้นๆควบคุมอยู่
+                ส่วนสำหรับการเงินและโชคลาภจะดีอย่างราวกับตกไปในขุมทรัพย์แห่งชีวิต</strong
+              >
+            </p>
+            {@html displayProphecy(hanged, order)}
+          {:else if hanged && prophecy.isHaveProphecyHanged == false}
+            <p class="remark">
+              <strong
+                >เนื่องจากคุณได้รับไพ่ใบนี้แบบกลับหัว
+                ดังนั้นความหมายของคำทำนายจะตรงข้าม</strong
+              >
+            </p>
+            {@html displayProphecy(hanged, order)}
+          {:else}
+            <p>
+              <strong>คำทำนายของไพ่ใบนี้จะเป็นดังต่อไปนี้</strong>
+            </p>
+            {@html displayProphecy(hanged, order)}
+          {/if}
+        </div>
       </div>
     </div>
   </div>
@@ -162,6 +166,13 @@
     background-repeat: no-repeat;
     border-radius: 10px;
   }
+  .details {
+    color: black;
+  }
+  .desc {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 
   @media (min-width: 640px) {
     main {
@@ -169,15 +180,24 @@
     }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     .panel {
       width: auto;
+      justify-content: center;
     }
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
     .panel {
       width: auto;
+      justify-content: center;
+    }
+    .details {
+      min-width: 760px;
+    }
+    .desc {
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
 </style>

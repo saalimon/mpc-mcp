@@ -6,10 +6,13 @@
   import Item from "./Item.svelte";
   import { flip } from "svelte/animate";
   export let cardList = [];
+  export let list;
+  
   let card = 1; // initial card for each turn
   let flipped = false;
   let cardNo = 196; // number of tarot card
   let rerender = true;
+  let isEnable = false;
 
   function arrCard(num) {
     const nums = new Set();
@@ -38,7 +41,7 @@
       })
       .sort((x, y) => x.r - y.r);
   }
-  let list = arrCard(cardNo);
+  list = arrCard(cardNo);
   const sort = (t) => {
     list = list.sort((x, y) => x[t] - y[t]);
   };
@@ -52,6 +55,7 @@
     card = 4;
     list = arrCard(cardNo);
     rerender = !rerender;
+    isEnable = true;
     cardList = [];
   }
 
@@ -61,35 +65,38 @@
     card = 1;
     list = arrCard(cardNo);
     rerender = !rerender;
+    isEnable = false;
     cardList = [];
   }
 </script>
 
 <main>
-<div class="background">
-  <!-- <AnimateSharedLayout type="crossfade"> -->
-  <!-- <Motion let:motion={grid} layout> -->
+  <div class="background">
+    <!-- <AnimateSharedLayout type="crossfade"> -->
+    <!-- <Motion let:motion={grid} layout> -->
 
-  <h1 class="title">Augur Your Fortune</h1>
-  <div
-    class="container"
-    style="grid-gap: {gap}px; grid-template-columns: repeat({card}, 1fr);"
-  >
-    <!-- {#key rerender} -->
-    {#each list as item (item.i)}
-      <div animate:flip={{ duration: 500 }}>
-        {#key rerender}
-          <Item bind:cardList {item} {flipped} />
-        {/key}
-      </div>
-    {/each}
-    <!-- {/key} -->
+    <h1 class="title">Augur Your Fortune</h1>
+    <div
+      class="container"
+      style="grid-gap: {gap}px; grid-template-columns: repeat({card}, 1fr);"
+    >
+      <!-- {#key rerender} -->
+      {#each list as item (item.i)}
+        <div animate:flip={{ duration: 500 }}>
+          {#key rerender}
+            <Item bind:cardList {item} {flipped} {isEnable} />
+          {/key}
+        </div>
+      {/each}
+      <!-- {/key} -->
+    </div>
+
+    <!-- </Motion> -->
+    <!-- </AnimateSharedLayout> -->
+    <button class="raise" on:click={cardList.length == 4 ? reset : shuffle}
+      >{cardList.length == 4 ? "Reveal Again" : "Reveal your cards"}</button
+    >
   </div>
-
-  <!-- </Motion> -->
-  <!-- </AnimateSharedLayout> -->
-  <button class="raise" on:click={ cardList.length ==4 ? reset : shuffle} >{ cardList.length ==4 ? "Reveal Again" : "Reveal your cards"}</button>
-</div>
 </main>
 
 <style>
