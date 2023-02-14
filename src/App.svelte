@@ -6,6 +6,8 @@
   import data from "./data.json";
   let cardList = [];
   let cards = [];
+  let list = [];
+  
   const navItems = [
     { label: "HOME", href: "home" },
     { label: "GUIDE", href: "guide" },
@@ -15,11 +17,18 @@
   ];
   function prophecy() {
     if (cardList.length === 4) {
-      cards = cardList.map((e) => {
+      // use list instead of card list for lock position
+      cards = list.map((e) => {
         return data["card"].find((el) => {
           return parseInt(el.cardId) === parseInt(e.card_no);
         });
       });
+
+      // let temp = [86, 77 ,124 , 32];
+      // cards = temp.map(e => {
+      //   return data["card"].find((el) => {
+      //  return parseInt(el.cardId) === e;});
+      // });
     }
   }
   $: cardList, prophecy();
@@ -67,6 +76,7 @@
           <h1 class="title" style="color: white;">GUIDE TO AUGUR</h1>
           <a
             href="https://reidberlin.wixsite.com/mpc-mcp?fbclid=IwAR18AhyRZf5JcuxpwgrWSIkO4Vzu733yVyJwMXVYEvv7ur4plY_i88rUtjY"
+            target="_blank"
           >
             <img src="MCP_W.png" alt="logo" class="logo" />
           </a>
@@ -85,7 +95,7 @@
   <section use:scrollRef={"augur"}>
     <div class="section" style="background-color: salmon;">
       <div class="splash splash-img">
-        <Game bind:cardList />
+        <Game bind:cardList bind:list/>
       </div>
     </div>
   </section>
@@ -97,10 +107,10 @@
             The Prophcey Result
           </h2>
           <div class="flex-container">
-            <Prophecy prophecy={cards[0]} hanged={cardList[0].hanged} />
-            <Prophecy prophecy={cards[1]} hanged={cardList[1].hanged} />
-            <Prophecy prophecy={cards[2]} hanged={cardList[2].hanged} />
-            <Prophecy prophecy={cards[3]} hanged={cardList[3].hanged} />
+            <Prophecy prophecy={cards[0]} hanged={list[0].hanged} order={0} />
+            <Prophecy prophecy={cards[1]} hanged={list[1].hanged} order={1}/>
+            <Prophecy prophecy={cards[2]} hanged={list[2].hanged} order={2}/>
+            <Prophecy prophecy={cards[3]} hanged={list[3].hanged} order={3}/>
           </div>
         </div>
       </div>
@@ -211,7 +221,7 @@
     background-blend-mode: darken;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
     .splash {
       padding: 40px;
     }
