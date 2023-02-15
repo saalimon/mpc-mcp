@@ -62,7 +62,7 @@
       max-width: none;
     }
   }
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     .panel {
     margin: 40px;
     padding: 4% ;
