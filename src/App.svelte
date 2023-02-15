@@ -110,9 +110,9 @@
     {#if cardList.length == 4}
       <div class="section-100 summary-section">
         <div class="splash ">
-          <h2 class="title" style="opacity: 100% !important;">
+          <h1 class="title" style="opacity: 100% !important;">
             The Prophcey Result
-          </h2>
+          </h1>
           <div class="flex-container">
             <Prophecy prophecy={cards[0]} hanged={list[0].hanged} order={0} />
             <Prophecy prophecy={cards[1]} hanged={list[1].hanged} order={1} />
@@ -183,7 +183,7 @@
     font-family: droid-serif, serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 68px;
+    font-size: 3.2em;
   }
   .content-font {
     font-family: "Nunito", sans-serif;

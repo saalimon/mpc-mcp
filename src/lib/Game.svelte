@@ -7,7 +7,7 @@
   import { flip } from "svelte/animate";
   export let cardList = [];
   export let list;
-  
+
   let card = 1; // initial card for each turn
   let flipped = false;
   let cardNo = 196; // number of tarot card
@@ -131,8 +131,6 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     color: white;
     border-radius: 4rem;
-    padding: 1rem 2rem;
-    font-size: 150%;
     margin-top: 80px;
     transition: 0.25s;
   }
@@ -157,6 +155,16 @@
     }
     .title {
       font-size: 3.2em;
+    }
+    button {
+      background-color: #ff2e8d;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      color: white;
+      border-radius: 4rem;
+      padding: 1rem 2rem;
+      font-size: 150%;
+      margin-top: 80px;
+      transition: 0.25s;
     }
   }
 
