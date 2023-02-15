@@ -46,7 +46,7 @@
         <div class="desc">
           <h2>{prophecy["cardName"]}</h2>
           {#if hanged && prophecy["isHaveProphecyHanged"]}
-            <p class="remark">
+            <p>
               <strong
                 >เนื่องจากคุณได้รับไพ่ใบนี้แบบกลับหัว
                 ดังนั้นความหมายของคำทำนายจะเป็นดังต่อไปนี้</strong
