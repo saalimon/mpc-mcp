@@ -174,7 +174,20 @@
     padding-right: 0px;
   }
 
-  @media (min-width: 640px) {
+  @media (max-width: 999px) {
+    main {
+      max-width: none;
+    }
+    .panel {
+      width: auto;
+      justify-content: center;
+    }
+     .details {
+      width: 600px;
+    }
+  }
+
+  @media (min-width: 1000px) {
     main {
       max-width: none;
     }
@@ -185,9 +198,12 @@
       width: auto;
       justify-content: center;
     }
+    .details {
+      width: auto;
+    }
   }
 
-  @media (max-width: 1000px) {
+  /* @media (max-width: 1000px) {
     .panel {
       width: auto;
       justify-content: center;
@@ -199,5 +215,5 @@
       padding-left: 40px;
       padding-right: 40px;
     }
-  }
+  } */
 </style>

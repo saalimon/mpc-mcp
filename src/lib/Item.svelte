@@ -84,5 +84,12 @@
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 10px;
-  }  
+  }
+
+  @media (max-width: 640px) {
+    .flip-card {
+      width: 126px;
+      height: 210px;
+    }
+  }
 </style>
