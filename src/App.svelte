@@ -1,5 +1,6 @@
 <script>
   import { scrollTo, scrollRef, scrollTop } from "svelte-scrolling";
+  import { onMount } from "svelte";
   import Game from "./lib/Game.svelte";
   import Landing from "./lib/Landing.svelte";
   import Prophecy from "./lib/Prophecy.svelte";
@@ -7,7 +8,8 @@
   let cardList = [];
   let cards = [];
   let list = [];
-  
+  let showMobileMenu = false;
+
   const navItems = [
     { label: "HOME", href: "home" },
     { label: "GUIDE", href: "guide" },
@@ -15,6 +17,9 @@
     // { label: "FRAME", href: "frame" },
     { label: "TALK", href: "talk" },
   ];
+
+  const handleMobileIconClick = () => (showMobileMenu = !showMobileMenu);
+
   function prophecy() {
     if (cardList.length === 4) {
       // use list instead of card list for lock position
@@ -36,7 +41,10 @@
 
 <nav>
   <div class="inner">
-    <ul class="navbar-list">
+    <div on:click={handleMobileIconClick} class={`mobile-icon${showMobileMenu ? ' active' : ''}`}>
+      <div class="middle-line"></div>
+    </div>
+    <ul class={`navbar-list${showMobileMenu ? ' mobile' : ''}`}>
       {#each navItems as item}
         <li>
           <a use:scrollTo={{ ref: item.href, duration: 1000 }} href={item.href}
@@ -95,7 +103,7 @@
   <section use:scrollRef={"augur"}>
     <div class="section" style="background-color: salmon;">
       <div class="splash splash-img">
-        <Game bind:cardList bind:list/>
+        <Game bind:cardList bind:list />
       </div>
     </div>
   </section>
@@ -108,9 +116,9 @@
           </h2>
           <div class="flex-container">
             <Prophecy prophecy={cards[0]} hanged={list[0].hanged} order={0} />
-            <Prophecy prophecy={cards[1]} hanged={list[1].hanged} order={1}/>
-            <Prophecy prophecy={cards[2]} hanged={list[2].hanged} order={2}/>
-            <Prophecy prophecy={cards[3]} hanged={list[3].hanged} order={3}/>
+            <Prophecy prophecy={cards[1]} hanged={list[1].hanged} order={1} />
+            <Prophecy prophecy={cards[2]} hanged={list[2].hanged} order={2} />
+            <Prophecy prophecy={cards[3]} hanged={list[3].hanged} order={3} />
           </div>
         </div>
       </div>
@@ -157,7 +165,7 @@
     background-blend-mode: darken;
   }
   .splash {
-    padding: 100px;
+    /* padding: 100px; */
     height: auto;
     width: 100%;
     text-align: center;
