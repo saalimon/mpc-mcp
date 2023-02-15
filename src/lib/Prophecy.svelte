@@ -21,7 +21,7 @@
         </p>`;
     } else {
       return `<p>
-          <strong>การเงิน</strong> - ${prophecy[checkHanged]["money"]}
+          <strong>โชคลาภ</strong> - ${prophecy[checkHanged]["money"]}
         </p>`;
     }
   }
@@ -81,7 +81,7 @@
             <p class="remark">
               <strong
                 >เนื่องจากคุณได้รับไพ่ใบนี้แบบกลับหัว
-                ดังนั้นความหมายของคำทำนายจะตรงข้าม</strong
+                ดังนั้นความหมายของคำทำนายจะให้ผลตรงข้าม</strong
               >
             </p>
             {@html displayProphecy(hanged, order)}
